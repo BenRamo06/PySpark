@@ -1,9 +1,9 @@
 # PySpark Installation
 
 
-### Install Python 
+### 1. Install Python 
 
-### Download Spark
+### 2. Download Spark
 
 We must download file Spark from https://spark.apache.org/downloads.html
 
