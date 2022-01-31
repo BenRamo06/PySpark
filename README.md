@@ -22,3 +22,5 @@ Note: spark-1.2.0-bin-hadoop2.4.tgz downloaded file
     * Save and exit file (ESC --> wq --> enter)
 
 * Open terminal and type: pyspark
+
+Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-notebook-3-minutes
