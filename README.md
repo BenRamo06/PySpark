@@ -24,3 +24,17 @@ Note: spark-1.2.0-bin-hadoop2.4.tgz downloaded file
 * Open terminal and type: pyspark
 
 Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-notebook-3-minutes
+
+
+### 3. Apache Spark
+
+Spark is a framework with distributed processing in memory (More faster)
+Spark contains modules to process ML, Streaming and Batchs
+
+
+Hadoop is a framework with distributed processing in disk
+Hadoop is more useful with Batch data
+
+We can use PySpark multiple language like to: Java, Scala, Python and R
+
+![a](https://github.com/BenRamo06/PySpark/blob/master/images/ems5cAs.png)
