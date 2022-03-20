@@ -3,7 +3,11 @@ import pyspark
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 
-spark = SparkSession.builder.appName('Tets').getOrCreate()
+
+# We create (builder) a Spark Session where:
+    # Spark is a distribuided processing in the master local
+    # Our process (appName) will be called Test
+spark = SparkSession.builder.master("local").appName('Test').getOrCreate()
 
 
 # Defined schema
@@ -18,3 +22,8 @@ df = spark.createDataFrame([[1,2],
 
 
 df.printSchema()
+
+
+# We always need to close session spark
+
+spark.close()

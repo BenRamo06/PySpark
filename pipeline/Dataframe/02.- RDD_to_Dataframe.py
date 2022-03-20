@@ -1,7 +1,7 @@
 import pyspark
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName('Test').getOrCreate()
+spark = SparkSession.builder.master('local').appName('Test').getOrCreate()
 
 
 # We create a RDD
@@ -19,3 +19,5 @@ df_of_rdd.show()
 
 # Print schema of DF
 df_of_rdd.printSchema()
+
+spark.close()
