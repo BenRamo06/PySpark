@@ -26,4 +26,4 @@ df.printSchema()
 
 # We always need to close session spark
 
-spark.close()
+spark.stop()

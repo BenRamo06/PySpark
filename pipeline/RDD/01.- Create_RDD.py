@@ -5,15 +5,13 @@ from pyspark import SparkConf, SparkContext
 # This procees will be executed in local
 # And its name is Test
 
-sc = SparkContext(master='local', appName='Test')
+sc = SparkContext(master='local', appName='CreateRDD')
 
 
 # We create a RDD with a list 
-rdd = sc.parallelize([[1,2],
-                      [3,4]])
+rdd = sc.parallelize([1,2,3,4])
 
+for c in rdd.collect():
+    print(c)
 
-for element in rdd.collect():
-    print(element)
-
-# sc.stop()
+sc.stop()

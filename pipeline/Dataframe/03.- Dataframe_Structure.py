@@ -23,3 +23,6 @@ df = spark.createDataFrame([[1,2],
 
 
 df.printSchema()
+
+
+spark.stop()

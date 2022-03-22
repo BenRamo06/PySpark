@@ -20,4 +20,4 @@ df_of_rdd.show()
 # Print schema of DF
 df_of_rdd.printSchema()
 
-spark.close()
+spark.stop()
