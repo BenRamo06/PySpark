@@ -1,0 +1,4 @@
+glcoud dataproc clusters create <CLUSTER_NAME> \
+--initialization-actions gs://<BUCKET>/file.sh \  --> install components
+--num-masters 3  \
+--num-workers 2

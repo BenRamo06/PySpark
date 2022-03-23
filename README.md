@@ -70,8 +70,8 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 
 
 Spark (Processing Memory, batch and streaming)
-Bounded - DataFrames
-UnBounded - DStreams
+	Bounded - DataFrames
+	UnBounded - DStreams
 
 
 Data Proc (Compute and Storage separated)
@@ -81,13 +81,12 @@ Hadoop (Processing Disk, batch, Compute and Storage together)
 
 
 	Storage --> HDFS (Hadoop Distruibed File System)
-					- Store data in multiple computers
-					- it store data in blocks
+					- Files is divided into blocks across cluster
 					- 128 MB is default block storage
 
 					- What if a data node crashes?
 					  Do we lose this piece of data?
-					  When a block is created it is replicated and stored on different data nodes (Replication Method, 3 nodes replication by default)
+					  When a block is created it is replicated and stored on different data nodes (Replication Method/Factor, 3 nodes replication by default)
 					  Hence, HDFS doesn't lose data even if a node crashed (FAIL TOLERANT)
 					  
 
@@ -116,11 +115,14 @@ Hadoop (Processing Disk, batch, Compute and Storage together)
 
 
 	Name Node (Master)
-					- Maintains and manages data nodes
-					- Record metadata of the data blocks (location, stored, size, permissions, hierarchy)
+					- Maintains and manages blocks on the DataNodes (slave nodes)
+					- Record metadata of the blocks (location(node), size, permissions, hierarchy)
+					- Receives a Heartbeat and a block report from all the DataNodes in the cluster to ensure that the DataNodes are live.
+					- Responsible to take care of the replication factor of all the blocks
 	Data nodes (Slaves)
 					- Store actual data
 					- Process data
+					- They send heartbeats to the NameNode periodically to report the overall health of HDFS, by default, this frequency is set to 3 seconds.
 
 
 
@@ -137,6 +139,13 @@ Hadoop (Processing Disk, batch, Compute and Storage together)
 		- DataProc and GCS must be in the same region for Latency purpose
 		- If we have more than 10K input file. We need to create files with more capacity
 
+	Benefits
+		- Low cost  --> 1 c per virtual cpu per cluster per hour
+		- Fast 		--> to start, scale and shut down near 90 seconds or less on average  
+		- Reizable  --> Cluster can be created and scaled quickly
+		- Open Source --> You can use hadoop or spark, because Dataproc manages updates
+		- Versioning --> Allows you to switch different version of hadoop or any tool (spark, hive, pig)
+		- High Availability
 
 
 What is a cluster
