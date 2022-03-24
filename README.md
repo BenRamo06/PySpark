@@ -68,6 +68,9 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 
 ### HADDOP
 
+What is a cluster
+	Cluster is a group of interconnected computers (know as nodes) thant can work together on the same problem.
+
 
 Spark (Processing Memory, batch and streaming)
 	Bounded - DataFrames
@@ -79,8 +82,10 @@ Data Proc (Compute and Storage separated)
 	Best Practices
 
 		- Use GCS rather than HDFS
-		- DataProc and GCS must be in the same region for Latency purpose
+		- DataProc and GCS must be in the same region or near for Latency purpose
 		- If we have more than 10K input file. We need to create files with more capacity
+		- Use Pereemptible VMs lower cost
+		- Create cluster with mix of VMS and PVMS
 
 	Benefits
 		- Low cost  --> 1 c per virtual cpu per cluster per hour
@@ -90,6 +95,9 @@ Data Proc (Compute and Storage separated)
 		- Versioning --> Allows you to switch different version of hadoop or any tool (spark, hive, pig)
 		- High Availability
 
+		
+
+
 
 Hadoop (Processing Disk, batch, Compute and Storage together, Master/Slave Architecture)
 
@@ -97,7 +105,7 @@ Hadoop (Processing Disk, batch, Compute and Storage together, Master/Slave Archi
 	Storage --> HDFS (Hadoop Distruibed File System)
 					- Block Structured file system
 					- Files is divided into blocks across cluster
-					- 128 MB is default block storage
+					- 128 MB is default configuration block size
 
 					- What if a data node crashes?
 					  Do we lose this piece of data?
@@ -110,10 +118,10 @@ Hadoop (Processing Disk, batch, Compute and Storage together, Master/Slave Archi
 					- Split data in parts to process and every part will be processed separtly  in different data node
 					- Has 4 phases:
 						
-						* Split				= Input is split into fragments (Block) across cluster.
+						* Split				= Input is split into fragments (Block)
 						* Mapper phases		= Each block will have a map task, where it will process a set of key-value pair.
 						* Shuffle and sort  = Key value pair is sorted and grouped in 
-						* Reduce phase 		= All grouped words are counted
+						* Reduce phase 		= Reduce task per Key-value group
 
 
 
@@ -158,9 +166,14 @@ Hadoop (Processing Disk, batch, Compute and Storage together, Master/Slave Archi
 
 
 
+When uset it
 
-What is a cluster
-	Cluster is a group of interconnected computers (know as nodes) thant can work together on the same problem.
+	HDFS: When you have thousands of partitions and directories, and each file size is relatively small
+		  When you modify the HDFS data currently (apppend) or you rename directories
+		  You have a lot of partitioned writes (spark.read().write.partitionBy(...).parquet(gs://...))
+
+
+
 
 
 What is ACID?
@@ -171,35 +184,8 @@ Work Tamplates (crear cluster y destruirlos.)
 3 Sección --> 
 
 Cluster long live?
-Cluster Ephimeros?
+Cluster Ephimeros?  --> Jobs are allocatead as needed and then released and turned down as the job finish
 
 
 
 
-#### Questions
-
-¿Qué tendría que hacer para migrar mis proceso a GCP?
-¿Que desventajas se tienen si se queda el storage en on-premise?
-¿Cómo paso mis datos a GCS?
-	¿Conocer el tamaño de la información y qué necesito?.
-		¿Cloud Connector?
-		Si es menos de 1 TB por gsutil.
-		Si es más de 1TB por Transfer Appliance.
-¿Como gastar menos en Storage? --> Cambio de clase para menor costo
-¿Como gastar menos en procesamiento?
-	Pre-empable --> 
-	Cluster Ephimeral --> 
-
-
-Tu puedes hacer una reserva de Pre-mtible machines y correr sobre esa reserva.
-
-Un cluster debe de contener:
-	%on demand
-	%prem-tible 
-
-
-El cluster es tolerante a fallo, no la maquina.
-
-
-
-Alta disponibilidad --> Que los recursos esten disponibles (nodo primario a secundario, puede ser primario.)
