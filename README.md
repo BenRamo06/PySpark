@@ -76,11 +76,26 @@ Spark (Processing Memory, batch and streaming)
 
 Data Proc (Compute and Storage separated)
 
+	Best Practices
 
-Hadoop (Processing Disk, batch, Compute and Storage together)
+		- Use GCS rather than HDFS
+		- DataProc and GCS must be in the same region for Latency purpose
+		- If we have more than 10K input file. We need to create files with more capacity
+
+	Benefits
+		- Low cost  --> 1 c per virtual cpu per cluster per hour
+		- Fast 		--> to start, scale and shut down near 90 seconds or less on average  
+		- Reizable  --> Cluster can be created and scaled quickly
+		- Open Source --> You can use hadoop or spark, because Dataproc manages updates
+		- Versioning --> Allows you to switch different version of hadoop or any tool (spark, hive, pig)
+		- High Availability
+
+
+Hadoop (Processing Disk, batch, Compute and Storage together, Master/Slave Architecture)
 
 
 	Storage --> HDFS (Hadoop Distruibed File System)
+					- Block Structured file system
 					- Files is divided into blocks across cluster
 					- 128 MB is default block storage
 
@@ -117,14 +132,22 @@ Hadoop (Processing Disk, batch, Compute and Storage together)
 	Name Node (Master)
 					- Maintains and manages blocks on the DataNodes (slave nodes)
 					- Record metadata of the blocks (location(node), size, permissions, hierarchy)
+						There are two files associated with the metadata:
+							FsImage: It contains the complete state of the file system namespace since the start of the NameNode.
+							EditLogs: It contains all the recent modifications made to the file system with respect to the most recent FsImage.
 					- Receives a Heartbeat and a block report from all the DataNodes in the cluster to ensure that the DataNodes are live.
 					- Responsible to take care of the replication factor of all the blocks
+					- In case of the DataNode failure, the NameNode chooses new DataNodes for new replicas,
 	Data nodes (Slaves)
 					- Store actual data
 					- Process data
 					- They send heartbeats to the NameNode periodically to report the overall health of HDFS, by default, this frequency is set to 3 seconds.
+					
 
 
+	Secondary NameNode/CheckpointNode:
+					- Works concurrently with the primary NameNode as a helper daemon
+					- The Secondary NameNode is one which constantly reads all the file systems and metadata from the RAM of the NameNode and writes it into the hard disk or the file system.
 
 	Disventages:
 
@@ -133,19 +156,7 @@ Hadoop (Processing Disk, batch, Compute and Storage together)
 
 
 
-	Best Practices
 
-		- Use GCS rather than HDFS
-		- DataProc and GCS must be in the same region for Latency purpose
-		- If we have more than 10K input file. We need to create files with more capacity
-
-	Benefits
-		- Low cost  --> 1 c per virtual cpu per cluster per hour
-		- Fast 		--> to start, scale and shut down near 90 seconds or less on average  
-		- Reizable  --> Cluster can be created and scaled quickly
-		- Open Source --> You can use hadoop or spark, because Dataproc manages updates
-		- Versioning --> Allows you to switch different version of hadoop or any tool (spark, hive, pig)
-		- High Availability
 
 
 What is a cluster
