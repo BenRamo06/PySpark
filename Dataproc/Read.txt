@@ -111,8 +111,16 @@ What is ACID?
 
 
 
-Work Tamplates (crear cluster y destruirlos.)
-3 Sección --> 
+Work Tamplates (reusable workflow configuration, for managing and executing workflows. )
+
+	* Managed cluster
+		The workflow will create this "ephemeral" cluster to run workflow jobs, and then delete the cluster when the workflow is finished.
+
+	* Cluster selector
+		A workflow template can specify an existing cluster on which to run workflow jobs by specifying one or more user labels that were previously applied to one or more clusters. 
+		The workflow will run on a cluster that matches all of the specified labels. If multiple clusters match the label(s), 
+		Dataproc will select the cluster with the most YARN available memory to run all workflow jobs. 
+		At the end of workflow, the selected cluster is not deleted
 
 Cluster long live?
 Cluster Ephimeros?  --> Jobs are allocatead as needed and then released and turned down as the job finish

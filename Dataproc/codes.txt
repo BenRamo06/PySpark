@@ -4,30 +4,23 @@ glcoud dataproc clusters create <CLUSTER_NAME> \
 --num-workers 2
 
 
-gcloud dataproc clusters create sparktodp 
---enable-component-gateway 
---region us-central1 
---zone us-central1-a 
---master-machine-type n1-standard-4 
---master-boot-disk-size 500 
---num-workers 2 
---worker-machine-type n1-standard-4 
---worker-boot-disk-size 500 
+gcloud dataproc clusters create <CLUSTER_NAME> \
+--project qwiklabs-gcp-00-4388aa20a1d9 \
+--region us-central1 \  
+--zone us-central1-a \  
 --image-version 2.0-debian10 
---optional-components JUPYTER 
---project qwiklabs-gcp-00-4388aa20a1d9
+--master-machine-type n1-standard-4 \
+--worker-machine-type n1-standard-4 \
+--num-masters 3  \
+--num-workers 2  \
+--optional-components JUPYTER \
+--enable-component-gateway  \
+--initialization-actions gs://goog-dataproc-initialization-actions-${REGION}/python/pip-install.sh
 
 
-gcloud beta dataproc clusters create ${CLUSTER_NAME} \
-  --region=${REGION} \
-  --zone=${ZONE} \
-  --image-version=1.5 \
-  --master-machine-type=n1-standard-4 \
-  --worker-machine-type=n1-standard-4 \
-  --bucket=${BUCKET_NAME} \
-  --optional-components=JUPYTER \
-  --enable-component-gateway \
-  --initialization-actions gs://goog-dataproc-initialization-actions-${REGION}/python/pip-install.sh
+
+
+  
 
 
 #!/bin/bash
@@ -53,7 +46,12 @@ gcloud dataproc clusters deleted <CLUSTER_NAME>
 
 pip install -r requirements.txt
 
-
+ROLE=$(/usr/share/google/get_metadata_value attributes/dataproc-role)
+if [[ "${ROLE}" == 'Master' ]]; then
+  ... master specific actions ...
+else
+  ... worker specific actions ...
+fi
 
 
 if __name__ == "__main__":
