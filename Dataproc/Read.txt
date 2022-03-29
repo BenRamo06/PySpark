@@ -25,9 +25,8 @@ Data Proc (Compute and Storage separated)
 		- Reizable  --> Cluster can be created and scaled quickly
 		- Open Source --> You can use hadoop or spark, because Dataproc manages updates
 		- Versioning --> Allows you to switch different version of hadoop or any tool (spark, hive, pig)
-		- High Availability
-
-		
+		- High Availability -->
+		- Fully managed --> You can't worry for mantaining 	
 
 
 
