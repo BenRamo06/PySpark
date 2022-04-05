@@ -1,29 +1,37 @@
-glcoud dataproc clusters create <CLUSTER_NAME> \
---initialization-actions gs://<BUCKET>/file.sh \  --> install components
---num-masters 3  \
---num-workers 2
-
-
-gcloud dataproc clusters create <CLUSTER_NAME> \
---project qwiklabs-gcp-00-4388aa20a1d9 \
---region us-central1 \  
---zone us-central1-a \  
---image-version 2.0-debian10 
+gcloud dataproc clusters create mjtelco \
+--project qwiklabs-gcp-01-9f0e1afce29b \
+--bucket qwiklabs-gcp-01-9f0e1afce29b \
+--region us-central1 \
+--zone us-central1-a \
 --master-machine-type n1-standard-4 \
---worker-machine-type n1-standard-4 \
---num-masters 3  \
---num-workers 2  \
+--worker-machine-type n1-standard-2 \
+--num-masters 1 \
+--num-workers 2 \
+--master-boot-disk-size 500 \
+--worker-boot-disk-size 500 \
+--image-version 2.0-debian10 \
 --optional-components JUPYTER \
---enable-component-gateway  \
+--enable-component-gateway \
 --initialization-actions gs://goog-dataproc-initialization-actions-${REGION}/python/pip-install.sh
 
 
+------------------------------------------
+------- With parameters --> OK -------
+------------------------------------------
 
-
+gcloud dataproc jobs submit pyspark \
+--cluster mjtelco \
+--id mjtelco-test-4 \
+--region us-central1 \
+--max-failures-per-hour 1 \
+gs://qwiklabs-gcp-01-9f0e1afce29b/benchmark.py -- 220
   
 
+------------------------------------------
+--------- With parameters --> ¿?-------
+------------------------------------------
 
-#!/bin/bash
+
 gcloud dataproc jobs submit pyspark \
        --cluster sparktodp \
        --region us-central1 \
@@ -32,16 +40,26 @@ gcloud dataproc jobs submit pyspark \
 
 
 
-gcloud dataproc clusters deleted <CLUSTER_NAME>
---region <REGION>
+-------------------------------------------------
+---------------- delete cluster -----------------
+-------------------------------------------------
+
+gcloud dataproc clusters delete mjtelco \
+--region us-central1
+
+-------------------------------------------------
+---------------- Update cluster -----------------
+-------------------------------------------------
+
+
+gcloud dataproc clusters update mjtelco \
+--region us-central1 \
+--num-workers 5
 
 
 
--- Set log level
-	* gcloud command
-		gcloud dataproc jobs submit hadoop --driver-log-levels
-	* Spark context
-		spark.sparkContext.setLogLevel("DEBUG")
+
+
 
 
 pip install -r requirements.txt
