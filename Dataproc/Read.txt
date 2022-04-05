@@ -8,6 +8,8 @@ Spark (Processing Memory, batch and streaming)
 	Bounded - DataFrames
 	UnBounded - DStreams
 
+	Diferences between RDDs, DataFrames and Dataset
+
 
 Data Proc (Compute and Storage separated)
 
@@ -18,6 +20,8 @@ Data Proc (Compute and Storage separated)
 		- If we have more than 10K input file. We need to create files with more capacity
 		- Use Pereemptible VMs lower cost
 		- Create cluster with mix of VMS and PVMS
+		- Divide cluster on-premise in many cluster ephemeral
+		- Create labels on clusters and jobs to find logs faster
 
 	Benefits
 		- Low cost  --> 1 c per virtual cpu per cluster per hour
@@ -26,7 +30,48 @@ Data Proc (Compute and Storage separated)
 		- Open Source --> You can use hadoop or spark, because Dataproc manages updates
 		- Versioning --> Allows you to switch different version of hadoop or any tool (spark, hive, pig)
 		- High Availability -->
-		- Fully managed --> You can't worry for mantaining 	
+		- Fully managed --> You can't worry for mantaining 
+
+
+	Configuration
+		- Single node (1 master: 0 workers)
+		- Standard  (1 master: n workers)
+		- High Availability (3 master: n workers)	
+
+		Initialization actions --> install additional components of the cluster. (libraries, environments, etc...)
+
+	Cluster
+		- Cluster long live
+		- Cluster ephemeral
+			Required resources are active only when being used. You only pay for what you use. 
+			Create Cluster --> Run Cluster -->  Delete Cluster
+
+	Logging
+		- gcloud dataproc jobs submit hadoop --driver-log-levels 
+		- spark.sparkContext.setLogLevel("DEBUG")
+
+
+	Orchestation
+
+		What is a DAG? (images/Work_Templates_Architecture.png, images/Work_Templates_Example.png)
+
+		- Work Templates (reusable workflow configuration, for managing and executing workflows. ) 
+
+			* Managed cluster
+				The workflow will create this "ephemeral" cluster to run workflow jobs, and then delete the cluster when the workflow is finished.
+
+			* Cluster selector
+				A workflow template can specify an existing cluster on which to run workflow jobs by specifying one or more user labels that were previously applied to one or more clusters. 
+				The workflow will run on a cluster that matches all of the specified labels. If multiple clusters match the label(s), 
+				Dataproc will select the cluster with the most YARN available memory to run all workflow jobs. 
+				At the end of workflow, the selected cluster is not deleted
+
+		- Cloud Composer
+
+	
+
+
+
 
 
 
@@ -49,10 +94,14 @@ Hadoop (Processing Disk, batch, Compute and Storage together, Master/Slave Archi
 					- Split data in parts to process and every part will be processed separtly  in different data node
 					- Has 4 phases:
 						
-						* Split				= Input is split into fragments (Block)
-						* Mapper phases		= Each block will have a map task, where it will process a set of key-value pair.
-						* Shuffle and sort  = Key value pair is sorted and grouped in 
-						* Reduce phase 		= Reduce task per Key-value group
+						* Split				= Input is split into shards (Block)
+						* Mapper phases		= Each block will have a map task (parse, tranform, filter data), where it will process 
+											  zero to N key-value pair.
+						* Combiner          = can group data un map phase, Reduces amout of data to move over network.
+						* Partitioner      = Splits KV pairs into shards, one per reducer
+						* Shuffle and sort  = Downloads partitioners data, sorts and groups by key i
+						* Reduce phase 		= Runs reduce function once per key grouping to aggregate, filter or combine. It sends zero to N KV pairs
+						* Output			= Transalate final KV pair and writes
 
 
 
@@ -91,39 +140,19 @@ Hadoop (Processing Disk, batch, Compute and Storage together, Master/Slave Archi
 	Disventages:
 
 		 it's part of the cluster which means even if you're not running jobs that use the compute hardware on the cluster you still have to pay for that power for the cluster to persist all of that storage this is the disadvantage of tying together compute and storage
+		 Storage and Processing are join
 
 
 
 
+	When uset it
 
-
-When uset it
-
-	HDFS: When you have thousands of partitions and directories, and each file size is relatively small
-		  When you modify the HDFS data currently (apppend) or you rename directories
-		  You have a lot of partitioned writes (spark.read().write.partitionBy(...).parquet(gs://...))
-
+		HDFS: When you have thousands of partitions and directories, and each file size is relatively small
+			When you modify the HDFS data currently (apppend) or you rename directories
+			You have a lot of partitioned writes (spark.read().write.partitionBy(...).parquet(gs://...))
 
 
 
-
-What is ACID?
-
-
-
-Work Tamplates (reusable workflow configuration, for managing and executing workflows. )
-
-	* Managed cluster
-		The workflow will create this "ephemeral" cluster to run workflow jobs, and then delete the cluster when the workflow is finished.
-
-	* Cluster selector
-		A workflow template can specify an existing cluster on which to run workflow jobs by specifying one or more user labels that were previously applied to one or more clusters. 
-		The workflow will run on a cluster that matches all of the specified labels. If multiple clusters match the label(s), 
-		Dataproc will select the cluster with the most YARN available memory to run all workflow jobs. 
-		At the end of workflow, the selected cluster is not deleted
-
-Cluster long live?
-Cluster Ephimeros?  --> Jobs are allocatead as needed and then released and turned down as the job finish
 
 
 
