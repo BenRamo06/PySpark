@@ -1,0 +1,38 @@
+jobs:
+- pysparkJob:
+    args:
+    - '20'
+    mainPythonFileUri: gs://qwiklabs-gcp-03-8b65077419b2/PI.py
+  stepId: step1_PI
+- prerequisiteStepIds:
+  - step1_PI
+  pysparkJob:
+    mainPythonFileUri: gs://qwiklabs-gcp-03-8b65077419b2/DF.py
+  stepId: step2_DF
+placement:
+  managedCluster:
+    clusterName: cluster-template
+    config:
+      gceClusterConfig:
+        zoneUri: us-central1-a
+      masterConfig:
+        diskConfig:
+          bootDiskSizeGb: 500
+        machineTypeUri: n1-standard-2
+        numInstances: 1
+      softwareConfig:
+        imageVersion: 2.0-debian10
+      workerConfig:
+        diskConfig:
+          bootDiskSizeGb: 500
+        machineTypeUri: n1-standard-2
+        numInstances: 2
+parameters:
+- description: Parameter PI file
+  fields:
+  - jobs['step1_PI'].pysparkJob.args[0]
+  name: NUMBER
+- description: The managed cluster name prefix
+  fields:
+  - placement.managedCluster.clusterName
+  name: CLUSTER
