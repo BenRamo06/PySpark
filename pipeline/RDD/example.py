@@ -1,56 +1,64 @@
-import sys
-import json 
-from pyspark import RDD, SparkContext
-from pyspark.sql import SparkSession
+# import sys
+# import json 
+# from pyspark import RDD, SparkContext
+# from pyspark.sql import SparkSession
 
 
-from pipeline.RDD.dependencies import errorsClass
+# from pipeline import *
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print(""" We must use: <file_name>.py <number>""")
-        sys.exit()
-    else:
+# if __name__ == "__main__":
+#     if len(sys.argv) != 2:
+#         print(""" We must use: <file_name>.py <number>""")
+#         sys.exit()
+#     else:
 
-        def get_name(element, name_movies):
+#         def get_name(element, name_movies):
 
-            cols = 'character,movie'.split(',')
+#             cols = 'character,movie'.split(',')
             
-            json_date = dict(zip(cols,element))
+#             json_date = dict(zip(cols,element))
 
-            json_date['name_movie'] = name_movies.get(json_date['movie'], "N/A")
+#             json_date['name_movie'] = name_movies.get(json_date['movie'], "N/A")
 
-            return json_date 
+#             return json_date 
 
 
 
-        file_name = sys.argv[1]
+#         file_name = sys.argv[1]
         
-        session = SparkSession.builder.appName('"test RDD').getOrCreate()
+#         session = SparkSession.builder.appName('"test RDD').getOrCreate()
 
-        movies = json.loads('{"1":"Phantom menace","2":"Attack of clones", \
-        "5" : "The Empire Strikes Back", \
-        "6" : "Return of the Jedi", \
-        "3" : "Revenge of the Sith", \
-        "4" : "A new hope", \
-        "7" : "The Force Awakens", \
-        "8" : "The Last Jedi", \
-        "9" : "The Rise of Skywalker"}')
+#         movies = json.loads('{"1":"Phantom menace","2":"Attack of clones", \
+#         "5" : "The Empire Strikes Back", \
+#         "6" : "Return of the Jedi", \
+#         "3" : "Revenge of the Sith", \
+#         "4" : "A new hope", \
+#         "7" : "The Force Awakens", \
+#         "8" : "The Last Jedi", \
+#         "9" : "The Rise of Skywalker"}')
 
-        sc = session.sparkContext
+#         sc = session.sparkContext
 
-        file = sc.textFile(file_name)
+#         file = sc.textFile(file_name)
 
-        get_data = file.map(lambda x: x.split(','))
+#         get_data = file.map(lambda x: x.split(','))
 
-        valid_row = get_data.filter(lambda x : len(x) == 2)
+#         valid_row = get_data.filter(lambda x : len(x) == 2)
 
-        get_json = valid_row.map(lambda x: get_name(element=x, name_movies=movies ))
-
-
-        errorsClass('Entrooooooooooooooooooooooo')
-
-        print(get_json.take(100))
+#         get_json = valid_row.map(lambda x: get_name(element=x, name_movies=movies ))
 
 
-        session.stop()
+        
+
+#         print(get_json.take(100))
+
+
+#         session.stop()
+
+
+# from dependencies.test import print_data
+
+
+# print_data(message='Error')
+
+import dependencies.test
