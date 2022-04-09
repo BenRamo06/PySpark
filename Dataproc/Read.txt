@@ -42,9 +42,11 @@ Data Proc (Compute and Storage separated)
 
 	Cluster
 		- Cluster long live
+			*Cluster involves frequent batch jobs or streaming jobs wich run 24x7
+			*ad hoc analytical queries?
 		- Cluster ephemeral
-			Required resources are active only when being used. You only pay for what you use. 
-			Create Cluster --> Run Cluster -->  Delete Cluster
+			*Required resources are active only when being used. You only pay for what you use. 
+			*Create Cluster --> Run Cluster -->  Delete Cluster
 
 	Logging
 		- gcloud dataproc jobs submit hadoop --driver-log-levels 
@@ -157,3 +159,25 @@ Hadoop (Processing Disk, batch, Compute and Storage together, Master/Slave Archi
 
 
 
+
+
+
+serverless
+
+
+metastore?
+
+preemtable / on demand.
+
+
+spark shell  ---> spark submit
+spark 
+
+
+spark.stop is necessay in SparkSession?
+
+
+
+productos
+apache hudi -- vs -- delta lake
+ranger (similar IAM)

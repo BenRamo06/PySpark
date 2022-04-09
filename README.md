@@ -31,7 +31,6 @@ Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-not
     Spark is a framework with distributed processing in memory (More faster)
     Spark contains modules to process ML, Streaming and Batchs
 
-
     Hadoop is a framework with distributed processing in disk (HDFS + Map Reduce)
     Hadoop is more useful with Batch data
 
@@ -43,18 +42,63 @@ Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-not
 ### 4. RDD (Resilient Distributed Datasets)
 
 * Unit base of Spark
-* They are immutable.
+* They are immutable (Consistency).
 * Fail tolerant.
-* They do parallel processing as also partitioning across cluster
-* They don't have defined structure.
-* They contain pasive  execution
+* They do parallel processing as also partitioning across cluster (Performance)
+* They don't have defined schema.
+* They contain pasive execution
+* Compilation errors
+
+Use cases : When we want to do low-level transformations
+            Unstrucutred data
+            Schema is unimportant 
+
+
+sparkContext
+    parallelize()
+
+    textFile()
+
+
+RDDs contains:
+
+    RDD transformations – Are a kind of operation that takes an RDD as input and produces another RDD as output. Once a transformation is applied to an RDD, it returns a new RDD, the original RDD remains the same and thus are immutable
+
+
+        map() : Transformation is used the apply operations on each elemnt in our RDD
+
+        filter() : Transformation is used to filter the records in an RDD
+
+        toDF() : Transformation is used to create a Dataframe of a RDD
+    
+    RDD actions – These methods are applied on a resultant RDD and produces a non-RDD value
+
+        count() : Returns the number of elements of our RDD. 
+
+        collect(): Returns a list of all the elements of the RDD (we don't use it in production environments) 
+
+        take():
+
+        saceAsTextFile()
+
+        getNumPartitions()
+
+        repartition() used to increase or decrease the RDD partitions
+
+        coalesce() used to only decrease the RDD partitions
+
+
 
 
 ### 5. Dataframes
 
-* They contain columns and data types.
+* They contain a schema (columns and data types).
+* They do parallel processing
+* Runtime errors
 
-This structure must be used if we will use high level task like to: filter, mapping, agregations, avarages or sums
+Use cases:  structured and semistructured data
+            Data requires a structure
+            Transformations are high-level.
 
 
 
