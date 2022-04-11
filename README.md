@@ -70,22 +70,33 @@ RDDs contains:
         filter() : Transformation is used to filter the records in an RDD
 
         toDF() : Transformation is used to create a Dataframe of a RDD
+
+        sortByKey(): sorts the input data by keys from key-value pairs either in ascending or descending order
+
+
+        groupByKey():  groups all the values in the given data with the same key togethe
     
     RDD actions – These methods are applied on a resultant RDD and produces a non-RDD value
 
         count() : Returns the number of elements of our RDD. 
 
-        collect(): Returns a list of all the elements of the RDD (we don't use it in production environments) 
+        collect(): Returns a list of all the elements of the RDD (we don't use it in production environments, because retrieve all aelemnts of the dataset in all nodes) 
 
-        take():
+        take(): returns n number of elements from the RDD
 
-        saceAsTextFile()
+        saceAsTextFile(): serve the resultant RDD as a text file
 
-        getNumPartitions()
+        getNumPartitions(): used to know how partitions have the RDD.
 
-        repartition() used to increase or decrease the RDD partitions
+        repartition(): used to increase or decrease the RDD partitions
 
-        coalesce() used to only decrease the RDD partitions
+        coalesce(): used to only decrease the RDD partitions
+
+        union(): union between RDDS 
+
+        distinct(): get distinct values in the RDD
+
+        zip(): create tuples win two RDD rdd1.zip(rdd2)
 
 
 
@@ -100,6 +111,80 @@ Use cases:  structured and semistructured data
             Data requires a structure
             Transformations are high-level.
 
+
+
+
+    - Attributes Dataframe
+
+        * .columns : get name columns in Dataframe
+
+        * .dtypes: get columns and datatype in tuples
+
+        * .schema: get schema in format StrcutType and StructField
+
+
+    - Methods Dataframe
+
+        * .select() : get columns of Dataframe
+
+        * .where/filter(): filter dataframe
+
+        * .join(): join dataframes with different ways
+
+        * .union() : union two dataframes with the same schema (this include duplicated values)
+
+        * .distinct() eliminate duplicated rows
+
+    - Functions 
+
+        * alias(name): set name of a column in Dataframe
+
+        * lit(value): add literall value
+
+        * cast(new_data_type) : convert column a new data type
+
+        * when() : expresion of conditions like to Case in ANSI-SQL
+
+        * isNotNull() : validate if a column is not null
+
+        * isNull() : validate if a column is null
+
+        * between(ini,end): if a columns 
+
+        * asc(col): Return ascending of columns
+
+        * desc(col): Return descending of columns
+
+        * coalesce(col,col): return first column not null
+
+        * current_date() : return current_date
+
+        * date_add(date, days): add days a date give
+
+        * date_format(date,format): convert date to format string
+
+        * date_sub(date, days): sub days to date give
+
+        * drop(col) : drop column
+
+        * fillna(value, subset): replace null values in subset(column)
+
+        * countDistinct(col1,[col2]..): return count distinct values
+
+        * sumDistinct(col1,[col2]..): return sum distinct values
+
+
+    - Window Functions
+
+        * row_number(): Returns a sequential number starting from 1 within a window partition
+
+        * rank(): Returns the rank of rows within a window partition, with gaps.
+
+        * dense_rank(): Returns the rank of rows within a window partition without any gaps. Where as Rank() returns rank with gaps.
+
+        * lag(Col, offset): returns the value that is `offset` rows before the current row, and `null` if there is less than `offset` rows before the current row.
+
+        * lead(Col, offset): returns the value that is `offset` rows after the current row, and `null` if there is less than `offset` rows after the current row.
 
 
 ### 6. SparkContext and SparkSession
