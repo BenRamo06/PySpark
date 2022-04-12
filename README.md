@@ -28,13 +28,13 @@ Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-not
 
 ### 3. Apache Spark
 
-    Spark is a framework with distributed processing in memory (More faster)
-    Spark contains modules to process ML, Streaming and Batchs
+Spark is a framework with distributed processing in memory (More faster)
+Spark contains modules to process ML, Streaming and Batchs
 
-    Hadoop is a framework with distributed processing in disk (HDFS + Map Reduce)
-    Hadoop is more useful with Batch data
+Hadoop is a framework with distributed processing in disk (HDFS + Map Reduce)
+Hadoop is more useful with Batch data
 
-    We can use PySpark multiple language like to: Java, Scala, Python and R
+We can use PySpark multiple language like to: Java, Scala, Python and R
 
 ![a](https://github.com/BenRamo06/PySpark/blob/master/images/ems5cAs.png)
 
@@ -73,8 +73,8 @@ RDDs contains:
 
         sortByKey(): sorts the input data by keys from key-value pairs either in ascending or descending order
 
+        groupByKey():  groups all the values in the given data with the same key together
 
-        groupByKey():  groups all the values in the given data with the same key togethe
     
     RDD actions – These methods are applied on a resultant RDD and produces a non-RDD value
 
@@ -164,6 +164,8 @@ Use cases:  structured and semistructured data
         * date_format(date,format): convert date to format string
 
         * date_sub(date, days): sub days to date give
+
+        * to_date(col, format)_: cast col to date
 
         * drop(col) : drop column
 
