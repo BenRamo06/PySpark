@@ -39,10 +39,10 @@ After we have downloaded the file, we must do next steps:
 * Open terminal and type: pyspark
 
 <p align="center">
-  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/SparkInstallation.png")>
+  <img width="320" src="https://github.com/BenRamo06/PySpark/blob/master/images/SparkInstallation.png")>
 </p>
 
-
+<!-- <img width="420" height="300" src="https://github.com/BenRamo06/PySpark/blob/master/images/SparkInstallation.png")> -->
 
 
 
