@@ -42,8 +42,6 @@ After we have downloaded the file, we must do next steps:
   <img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/SparkInstallation.png")>
 </p>
 
-<!-- <img width="420" height="300" src="https://github.com/BenRamo06/PySpark/blob/master/images/SparkInstallation.png")> -->
-
 
 
 Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-notebook-3-minutes
@@ -98,6 +96,10 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 
 <p align="center">
   <img src="https://github.com/BenRamo06/PySpark/blob/master/images/SessionsVsContext.png">
+</p>
+
+<p align="center">
+  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/Session_Context.png">
 </p>
 
 
