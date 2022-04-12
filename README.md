@@ -49,19 +49,28 @@ After we have downloaded the file, we must do next steps:
 Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-notebook-3-minutes
 
 
-### 3. Apache Spark
+### 3. What is Apache Spark?
 
-Spark is a framework with distributed processing in memory (More faster).       
-Spark contains modules to process ML, Streaming and Batchs.     
+Spark is a data processing engine for big data sets. Like Hadoop, Spark splits up large tasks across different nodes. However, it tends to perform faster than Hadoop and it uses random access memory (RAM) to cache and process data instead of a file system
 
-Hadoop is a framework with distributed processing in disk (HDFS + Map Reduce)       
-Hadoop is more useful with Batch data       
+The Spark ecosystem consists of five primary modules:
+
+* Spark Core: Underlying execution engine that schedules and dispatches tasks and coordinates input and output (I/O) operations.
+* Spark SQL: Gathers information about structured data to enable users to optimize structured data processing.
+* Spark Streaming and Structured Streaming: Both add stream processing capabilities. Spark Streaming takes data from different streaming sources and divides it into micro-batches for a continuous stream. Structured Streaming, built on Spark SQL, reduces latency and simplifies programming.
+* Machine Learning Library (MLlib): A set of machine learning algorithms for scalability plus tools for feature selection and building ML pipelines. The primary API for MLlib is DataFrames, which provides uniformity across different programming languages like Java, Scala and Python.
+* GraphX: User-friendly computation engine that enables interactive building, modification and analysis of scalable, graph-structured data.
 
 We can use PySpark multiple language like to: Java, Scala, Python and R
+
+**note**: Hadoop is a framework with distributed processing in disk (HDFS + Map Reduce)       
+          Hadoop is more useful with Batch data       
 
 <p align="center">
   <img src="https://github.com/BenRamo06/PySpark/blob/master/images/ems5cAs.png">
 </p>
+
+
 
 
 
