@@ -118,10 +118,10 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 * They contain pasive execution
 * Compilation errors
 
-Use cases : 
-    *   When we want to do low-level transformations        
-    *   Unstrucutred data       
-    *   Schema is unimportant       
+Use cases
+    * When we want to do low-level transformations        
+    * Unstrucutred data       
+    * Schema is unimportant       
 
 
 sparkContext
