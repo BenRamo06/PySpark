@@ -28,7 +28,7 @@ Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-not
 
 ### 3. Apache Spark
 
-Spark is a framework with distributed processing in memory (More faster).
+    Spark is a framework with distributed processing in memory (More faster).
     Spark contains modules to process ML, Streaming and Batchs.
 
 Hadoop is a framework with distributed processing in disk (HDFS + Map Reduce)
