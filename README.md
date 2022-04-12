@@ -9,19 +9,38 @@ We must download file Spark from https://spark.apache.org/downloads.html
 
 After we have downloaded the file, we must do next steps:
 
-*  Unzip the file : ``` tar -xzf spark-1.2.0-bin-hadoop2.4.tgz ```      
-*Unzip file name*: spark-1.2.0-bin-hadoop2.4.tgz downloaded file
+*  Unzip the file : 
+    ```bash 
+        tar -xzf spark-1.2.0-bin-hadoop2.4.tgz 
+    ```
+    **note**: spark-1.2.0-bin-hadoop2.4.tgz will be unzip file name
 
 * Move unzip file to another location (if you want, you can change name of the folder and it will have a name more comfortable)
 
 * Configure PATHS:
-    * Open file bashrc (vim ~/.bashrc)
+    * Open file bashrc 
+        ```bash
+            vim ~/.bashrc
+        ```
+
     * Add next variables:
-        - export SPARK_HOME=<ROOT FOLDER UNZIP>   Example: SPARK_HOME=/home/user/local/spark
-        - export PATH=$SPARK_HOME/bin:$PATH
-    * Save and exit file (ESC --> wq --> enter)
+
+        ```bash
+            export SPARK_HOME=<ROOT FOLDER UNZIP>   Example: SPARK_HOME=/home/user/local/spark
+            export PATH=$SPARK_HOME/bin:$PATH
+        ```
+
+    * Save and exit file 
+    
+        ```bash 
+            ESC --> wq --> enter 
+        ```
 
 * Open terminal and type: pyspark
+
+![a](https://github.com/BenRamo06/PySpark/blob/master/images/SparkInstallation.png)
+
+
 
 Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-notebook-3-minutes
 
