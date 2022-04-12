@@ -54,12 +54,15 @@ Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-not
 Spark is a framework with distributed processing in memory (More faster).       
 Spark contains modules to process ML, Streaming and Batchs.     
 
-Hadoop is a framework with distributed processing in disk (HDFS + Map Reduce)
-Hadoop is more useful with Batch data
+Hadoop is a framework with distributed processing in disk (HDFS + Map Reduce)       
+Hadoop is more useful with Batch data       
 
 We can use PySpark multiple language like to: Java, Scala, Python and R
 
-![a](https://github.com/BenRamo06/PySpark/blob/master/images/ems5cAs.png)
+<p align="center">
+  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/ems5cAs.png">
+</p>
+
 
 
 ### 4. RDD (Resilient Distributed Datasets)
