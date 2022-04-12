@@ -53,6 +53,19 @@ Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-not
 
 Spark is a data processing engine for big data sets. Like Hadoop, Spark splits up large tasks across different nodes. However, it tends to perform faster than Hadoop and it uses random access memory (RAM) to cache and process data instead of a file system
 
+The Spark engine was created to improve the efficiency of MapReduce (Hadoop) and keep its benefits. Even though Spark does not have its file system, it can access data on many different storage solutions. The data structure that Spark uses is called Resilient Distributed Dataset, or RDDs.
+
+RDD is a distributed set of elements stored in partitions on nodes across the cluster. The size of an RDD is usually too large for one node to handle. Therefore, Spark partitions the RDDs to the closest nodes and performs the operations in parallel. The system tracks all actions performed on an RDD by the use of a Directed Acyclic Graph (DAG).
+
+**Note**: Hadoop is a framework with distributed processing in disk (HDFS + Map Reduce)       
+
+
+<p align="center">
+  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/ems5cAs.png">
+</p>
+
+
+
 The Spark ecosystem consists of five primary modules:
 
 * Spark Core: Underlying execution engine that schedules and dispatches tasks and coordinates input and output (I/O) operations.
@@ -63,13 +76,18 @@ The Spark ecosystem consists of five primary modules:
 
 We can use PySpark multiple language like to: Java, Scala, Python and R
 
-**note**: Hadoop is a framework with distributed processing in disk (HDFS + Map Reduce)       
-          Hadoop is more useful with Batch data       
-
 <p align="center">
-  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/ems5cAs.png">
+  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/EcosystemSpark.png">
 </p>
 
+
+**Use Cases Apache Spark**
+
+*   The analysis of real-time stream data.
+*   When time is of the essence, Spark delivers quick results with in-memory computations.
+*   Dealing with the chains of parallel operations using iterative algorithms.
+*   Graph-parallel processing to model the data.
+*   All machine learning applications.
 
 
 
