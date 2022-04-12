@@ -65,7 +65,19 @@ We can use PySpark multiple language like to: Java, Scala, Python and R
 
 
 
-### 4. RDD (Resilient Distributed Datasets)
+### 4. SparkContext and SparkSession
+
+SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSession that is an unified API (SparkContext, StreamingContext and SQLContext)
+
+<p align="center">
+  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/SessionsVsContext.png">
+</p>
+
+
+
+
+
+### 5. RDD (Resilient Distributed Datasets)
 
 * Unit base of Spark
 * They are immutable (Consistency).
@@ -127,7 +139,7 @@ RDDs contains:
 
 
 
-### 5. Dataframes
+### 6. Dataframes
 
 * They contain a schema (columns and data types).
 * They do parallel processing
