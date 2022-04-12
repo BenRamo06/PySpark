@@ -110,6 +110,8 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 
 ### 5. RDD (Resilient Distributed Datasets)
 
+Benefits and concepts
+
 * Unit base of Spark
 * They are immutable (Consistency).
 * Fail tolerant.
@@ -119,9 +121,10 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 * Compilation errors
 
 Use cases
-    * When we want to do low-level transformations        
-    * Unstrucutred data       
-    * Schema is unimportant       
+
+*   When we want to do low-level transformations        
+*   Unstrucutred data       
+*   Schema is unimportant       
 
 
 sparkContext
