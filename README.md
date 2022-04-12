@@ -10,7 +10,7 @@ We must download file Spark from https://spark.apache.org/downloads.html
 After we have downloaded the file, we must do next steps:
 
 *  Unzip the file : ``` tar -xzf spark-1.2.0-bin-hadoop2.4.tgz ```      
-Note: spark-1.2.0-bin-hadoop2.4.tgz downloaded file
+**Unzip file name**: spark-1.2.0-bin-hadoop2.4.tgz downloaded file
 
 * Move unzip file to another location (if you want, you can change name of the folder and it will have a name more comfortable)
 
