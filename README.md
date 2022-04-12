@@ -95,12 +95,14 @@ We can use PySpark multiple language like to: Java, Scala, Python and R
 SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSession that is an unified API (SparkContext, StreamingContext and SQLContext)
 
 <p align="center">
-  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/SessionsVsContext.png">
+  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/Session_Context.png">
 </p>
 
 <p align="center">
-  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/Session_Context.png">
+  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/SessionsVsContext.png">
 </p>
+
+
 
 
 
@@ -116,12 +118,13 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 * They contain pasive execution
 * Compilation errors
 
-Use cases : When we want to do low-level transformations
-            Unstrucutred data
-            Schema is unimportant 
+Use cases : When we want to do low-level transformations        
+            Unstrucutred data       
+            Schema is unimportant       
 
 
 sparkContext
+
     parallelize()
 
     textFile()
