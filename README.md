@@ -129,7 +129,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 **sparkContext**
 
-* *[.parallelize(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/01.-Create_RDD.py)* Distribute a local Python collection to form an RDD
+* [.parallelize(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/01.-Create_RDD.py) *Distribute a local Python collection to form an RDD*
 
 * *[.textFile(path,minPartitions): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/02.-Read_Something.py)* Read a text file from HDFS, a local file system (available on all nodes), and return it as an RDD     
 
@@ -146,7 +146,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
     * [*map():* ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/03.-Process_Lambda.py)* : Transformation is used the apply operations on each elemnt in our RDD
 
-    * [*filter(): *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/05.-Filter_Somenthing.py) : Transformation is used to filter the records in an RDD
+    * *[filter(): ]*(https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/05.-Filter_Somenthing.py) : Transformation is used to filter the records in an RDD
 
     * [*toDF(): *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/06.-RDD_to_DF.py) : Transformation is used to create a Dataframe of a RDD
 
@@ -233,7 +233,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 * [*.distinct() :*]() eliminate duplicated rows
 
-* [*.createOrReplaceTempView(name) / .createTempView(name) :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/11.-SQL_Dataframe.py) The lifetime of this temporary table is tied to the SparkSession that was used to create this DataFrame
+* [*.createOrReplaceTempView(name) / .createTempView(name) : *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/11.-SQL_Dataframe.py) The lifetime of this temporary table is tied to the SparkSession that was used to create this DataFrame
     
 
 * [*.createOrReplaceGlobalTempView(name) / .createGlobalTempView(name) :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/11.-SQL_Dataframe.py) The lifetime of this temporary view is tied to this Spark application.
