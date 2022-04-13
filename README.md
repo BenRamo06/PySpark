@@ -118,7 +118,6 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 * They contain pasive execution
 * Compilation errors            
 
-
 #### Use cases
 
 *   When we want to do low-level transformations        
@@ -138,7 +137,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 * **getOrCreate()** *it takes a SparkContext if it exists or it creates one.*
 
 
-**RDDs contains:**      
+#### RDDs contains:
 
 
 * **RDD transformations** – Are a kind of operation that takes an RDD as input and produces another RDD as output. Once a transformation is applied to an RDD, it returns a new RDD, the original RDD remains the same and thus are immutable
@@ -184,13 +183,13 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 ### 6. Dataframes
 
 
-**Benefits and concepts**
+#### Benefits and concepts
 
 * They contain a schema (columns and data types) or it can be infer.
 * They do parallel processing
 * Runtime errors
 
-**Use cases**
+#### Use cases
 
 * structured and semistructured data
 * Data requires a structure
@@ -198,7 +197,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 
 
-**Spark Session**
+#### Spark Session
 
 * [*.createDataFrame(data[, schema, …]) : *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/01.-Create_Dataframe.py) Creates a DataFrame from an RDD, a list or a pandas.DataFram
 
@@ -221,7 +220,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 * .schema: get schema in format StrcutType and StructField
 
 
-**Methods Dataframe**
+#### Methods Dataframe
 
 * [*.select() :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/05.-Select_Somenthing.py) get columns of Dataframe
 
@@ -243,7 +242,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
         
 
 
-**Functions**
+#### Functions
 
 * alias(name): set name of a column in Dataframe
 
@@ -284,7 +283,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 * sumDistinct(col1,[col2]..): return sum distinct values
 
 
-**Window Functions**
+#### Window Functions
 
 * row_number(): Returns a sequential number starting from 1 within a window partition
 
