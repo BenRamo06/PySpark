@@ -162,25 +162,25 @@ Collection of elements partitioned across the nodes of the cluster that can be o
     
 * **RDD actions** – These methods are applied on a resultant RDD and produces a non-RDD value
 
-    * count() : Returns the number of elements of our RDD. 
+    * **_count():_** *Returns the number of elements of our RDD.*
 
-    * distinct(): get distinct values in the RDD
+    * **_distinct():_** *get distinct values in the RDD*
     
-    * collect(): Returns a list of all the elements of the RDD (we don't use it in production environments, because retrieve all aelemnts of the dataset in all * nodes) 
+    * **_collect():_** *Returns a list of all the elements of the RDD (we don't use it in production environments, because retrieve all aelemnts of the dataset in all * nodes)*
     
-    * take(num): returns n first elements from the RDD
+    * **_take(num):_** *returns n first elements from the RDD*
     
-    * [*saveAsTextFile(path):*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py) serve the resultant RDD as a file
+    * **_[saveAsTextFile(path):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py)_** *serve the resultant RDD as a file*
     
-    * [*getNumPartitions()*:](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py) used to know how partitions have the RDD.
+    * **_[getNumPartitions():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py)_** *used to know how partitions have the RDD.*
     
-    * [*repartition(num):*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py) used to increase or decrease the RDD partitions
+    * **_[repartition(num):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py)_** *used to increase or decrease the RDD partitions*
     
-    * [*coalesce(num):*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py) used to only decrease the RDD partitions
+    * **_[coalesce(num):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py)_** *used to only decrease the RDD partitions*
     
-    * union(rdd): union between RDDS 
+    * **_union(rdd):_** *union between RDDS*
     
-    * zip(): create tuples win two RDD rdd1.zip(rdd2)
+    * **_zip():_** *create tuples win two RDD rdd1.zip(rdd2)*
 
 
 ---
