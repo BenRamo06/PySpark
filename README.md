@@ -132,9 +132,9 @@ Use cases
 
 sparkContext
 
-    [parallelize](https://github.com/BenRamo06/git/blob/master/pipeline/RDD/01.- Create_RDD.py)
+[parallelize():](https://github.com/BenRamo06/git/blob/master/pipeline/RDD/01.- Create_RDD.py)
 
-    textFile()
+textFile()
 
 
 RDDs contains:
