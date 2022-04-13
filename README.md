@@ -133,13 +133,13 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 #### sparkContext
 
-* *[parallelize():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/01.-Create_RDD.py) Distribute a local Python collection to form an RDD*
+* **_[parallelize():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/01.-Create_RDD.py)_** *Distribute a local Python collection to form an RDD*
 
 * **_[textFile(path,minPartitions):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/02.-Read_Something.py)_** *Read a text file from HDFS, a local file system (available on all nodes), and return it as an RDD*     
 
-* *stop(): Shut down the SparkContext (it must be necessaty in our code).*
+* **_stop():_** *Shut down the SparkContext (it must be necessaty in our code).*
 
-* *getOrCreate(): it takes a SparkContext if it exists or it creates one.*
+* **_getOrCreate():_** *it takes a SparkContext if it exists or it creates one.*
 
 
 #### RDDs contains:
