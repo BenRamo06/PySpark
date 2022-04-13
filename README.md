@@ -110,6 +110,9 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 
 ### 5. RDD (Resilient Distributed Datasets)
 
+
+Collection of elements partitioned across the nodes of the cluster that can be operated on in parallel. 
+
 Benefits and concepts
 
 * Unit base of Spark
@@ -129,14 +132,14 @@ Use cases
 
 sparkContext
 
-    parallelize()
+    [parallelize](https://github.com/BenRamo06/git/blob/master/pipeline/RDD/01.- Create_RDD.py)
 
     textFile()
 
 
 RDDs contains:
 
-    RDD transformations – Are a kind of operation that takes an RDD as input and produces another RDD as output. Once a transformation is applied to an RDD, it returns a new RDD, the original RDD remains the same and thus are immutable
+* RDD transformations – Are a kind of operation that takes an RDD as input and produces another RDD as output. Once a transformation is applied to an RDD, it returns a new RDD, the original RDD remains the same and thus are immutable
 
 
         map() : Transformation is used the apply operations on each elemnt in our RDD
@@ -150,7 +153,7 @@ RDDs contains:
         groupByKey():  groups all the values in the given data with the same key together
 
     
-    RDD actions – These methods are applied on a resultant RDD and produces a non-RDD value
+* RDD actions – These methods are applied on a resultant RDD and produces a non-RDD value
 
         count() : Returns the number of elements of our RDD. 
 
@@ -158,7 +161,7 @@ RDDs contains:
 
         take(): returns n number of elements from the RDD
 
-        saceAsTextFile(): serve the resultant RDD as a text file
+        saveAsTextFile(): serve the resultant RDD as a text file
 
         getNumPartitions(): used to know how partitions have the RDD.
 
@@ -177,7 +180,7 @@ RDDs contains:
 
 ### 6. Dataframes
 
-* They contain a schema (columns and data types).
+* They contain a schema (columns and data types) or it can be infer.
 * They do parallel processing
 * Runtime errors
 
@@ -207,7 +210,19 @@ Use cases:  structured and semistructured data
 
         * .union() : union two dataframes with the same schema (this include duplicated values)
 
-        * .distinct() eliminate duplicated rows
+        * .distinct(): eliminate duplicated rows
+
+        * .createOrReplaceTempView(name): The lifetime of this temporary table is tied to the SparkSession that was used to create this DataFrame
+          .createTempView(name)
+
+        * .createOrReplaceGlobalTempView(name): The lifetime of this temporary view is tied to this Spark application.
+          .reateGlobalTempView(name)
+
+        * .groupBy(cols): Group by columns
+            .agg(function_agg(col))
+                
+                count()
+
 
     - Functions 
 
@@ -261,13 +276,5 @@ Use cases:  structured and semistructured data
         * lag(Col, offset): returns the value that is `offset` rows before the current row, and `null` if there is less than `offset` rows before the current row.
 
         * lead(Col, offset): returns the value that is `offset` rows after the current row, and `null` if there is less than `offset` rows after the current row.
-
-
-### 6. SparkContext and SparkSession
-
-SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSession that is an unified API (SparkContext, StreamingContext and SQLContext)
-
-![a](https://github.com/BenRamo06/PySpark/blob/master/images/SessionsVsContext.png)
-
 
 
