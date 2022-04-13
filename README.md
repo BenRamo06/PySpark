@@ -3,6 +3,8 @@
 
 ### 1. Install Python 
 
+---
+
 ### 2. Download Spark
 
 We must download file Spark from https://spark.apache.org/downloads.html
@@ -46,6 +48,7 @@ After we have downloaded the file, we must do next steps:
 
 Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-notebook-3-minutes
 
+---
 
 ### 3. What is Apache Spark?
 
@@ -88,7 +91,7 @@ We can use PySpark multiple language like to: Java, Scala, Python and R
 *   All machine learning applications.
 
 
-
+---
 
 ### 4. SparkContext and SparkSession
 
@@ -103,6 +106,8 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 </p>
 
 
+---
+
 ### 5. RDD (Resilient Distributed Datasets)
 
 
@@ -110,13 +115,13 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 #### Benefits and concepts
 
-* Unit base of Spark
-* They are immutable (Consistency).
-* Fail tolerant.
-* They do parallel processing as also partitioning across cluster (Performance)
-* They don't have defined schema.
-* They contain pasive execution
-* Compilation errors            
+- [x] Unit base of Spark
+- [x] They are immutable (Consistency).
+- [x] Fail tolerant.
+- [x] They do parallel processing as also partitioning across cluster (Performance)
+- [x] They don't have defined schema.
+- [x] They contain pasive execution
+- [x] Compilation errors            
 
 #### Use cases
 
@@ -178,7 +183,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
     * zip(): create tuples win two RDD rdd1.zip(rdd2)
 
 
-
+---
 
 ### 6. Dataframes
 
@@ -211,7 +216,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 * [*.sparkContext:*: ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/09.-DF_process_RDD.py) Returns the underlying SparkContext
 
-**Attributes Dataframe**
+#### Attributes Dataframe
 
 * .columns : get name columns in Dataframe
 
