@@ -116,160 +116,184 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 * They do parallel processing as also partitioning across cluster (Performance)
 * They don't have defined schema.
 * They contain pasive execution
-* Compilation errors
+* Compilation errors            
+
 
 **Use cases**
 
 *   When we want to do low-level transformations        
 *   Unstrucutred data       
-*   Schema is unimportant       
+*   Schema is unimportant      
+
 
 
 **sparkContext**
 
-* *[parallelize(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/01.-Create_RDD.py)*
+* *[.parallelize(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/01.-Create_RDD.py)* Distribute a local Python collection to form an RDD
 
-* *[textFile(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/02.-Read_Something.py)*
+* *[.textFile(path,minPartitions): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/02.-Read_Something.py)* Read a text file from HDFS, a local file system (available on all nodes), and return it as an RDD     
+
+* *.stop():* Shut down the SparkContext (it must be necessaty in our code).
+
+* *.getOrCreate(():* it takes a SparkContext if it exists or it creates one.
 
 
-**RDDs contains:**
+**RDDs contains:**      
+
 
 * **RDD transformations** – Are a kind of operation that takes an RDD as input and produces another RDD as output. Once a transformation is applied to an RDD, it returns a new RDD, the original RDD remains the same and thus are immutable
 
 
-    * *[map()](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/03.-Process_Lambda.py)* : Transformation is used the apply operations on each elemnt in our RDD
+    * [*map():* ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/03.-Process_Lambda.py)* : Transformation is used the apply operations on each elemnt in our RDD
 
-    * [filter()](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/05.-Filter_Somenthing.py) : Transformation is used to filter the records in an RDD
+    * [*filter(): *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/05.-Filter_Somenthing.py) : Transformation is used to filter the records in an RDD
 
-toDF() : Transformation is used to create a Dataframe of a RDD
+    * [*toDF(): *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/06.-RDD_to_DF.py) : Transformation is used to create a Dataframe of a RDD
 
-sortByKey(): sorts the input data by keys from key-value pairs either in ascending or descending order
+    * sortByKey(): sorts the input data by keys from key-value pairs either in ascending or descending order
 
-groupByKey():  groups all the values in the given data with the same key together
+    * [*groupByKey(): *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/08.-GroupByKey_Somenthing.py)  groups all the values in the given data with the same key together       
+
 
     
 * **RDD actions** – These methods are applied on a resultant RDD and produces a non-RDD value
 
-        count() : Returns the number of elements of our RDD. 
+    * count() : Returns the number of elements of our RDD. 
 
-        collect(): Returns a list of all the elements of the RDD (we don't use it in production environments, because retrieve all aelemnts of the dataset in all nodes) 
-
-        take(): returns n number of elements from the RDD
-
-        saveAsTextFile(): serve the resultant RDD as a text file
-
-        getNumPartitions(): used to know how partitions have the RDD.
-
-        repartition(): used to increase or decrease the RDD partitions
-
-        coalesce(): used to only decrease the RDD partitions
-
-        union(): union between RDDS 
-
-        distinct(): get distinct values in the RDD
-
-        zip(): create tuples win two RDD rdd1.zip(rdd2)
+    * distinct(): get distinct values in the RDD
+    
+    * collect(): Returns a list of all the elements of the RDD (we don't use it in production environments, because retrieve all aelemnts of the dataset in all * nodes) 
+    
+    * take(num): returns n first elements from the RDD
+    
+    * [*saveAsTextFile(path):*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py) serve the resultant RDD as a file
+    
+    * [*getNumPartitions()*:](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py) used to know how partitions have the RDD.
+    
+    * [*repartition(num):*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py) used to increase or decrease the RDD partitions
+    
+    * [*coalesce(num):*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py) used to only decrease the RDD partitions
+    
+    * union(rdd): union between RDDS 
+    
+    * zip(): create tuples win two RDD rdd1.zip(rdd2)
 
 
 
 
 ### 6. Dataframes
 
+
+**Benefits and concepts**
+
 * They contain a schema (columns and data types) or it can be infer.
 * They do parallel processing
 * Runtime errors
 
-Use cases:  structured and semistructured data
-            Data requires a structure
-            Transformations are high-level.
+**Use cases**
+
+* structured and semistructured data
+* Data requires a structure
+* Transformations are high-level.
 
 
 
+**Spark Session**
 
-    - Attributes Dataframe
+* [*.createDataFrame(data[, schema, …]) : *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/01.-Create_Dataframe.py) Creates a DataFrame from an RDD, a list or a pandas.DataFram
 
-        * .columns : get name columns in Dataframe
+* *.stop():* Shut down the SparkContext (it must be necessaty in our code).
 
-        * .dtypes: get columns and datatype in tuples
+* *.builder.appName(name):* Sets a name for the application
+ 
+* *.getOrCreate():* it takes a SparkContext if it exists or it creates one.
 
-        * .schema: get schema in format StrcutType and StructField
+* [*.read() : *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/04.-Read_something.py) Read from a file to Dataframe
 
+* [*.sparkContext:*: ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/09.-DF_process_RDD.py) Returns the underlying SparkContext
 
-    - Methods Dataframe
+**Attributes Dataframe**
 
-        * .select() : get columns of Dataframe
+* .columns : get name columns in Dataframe
 
-        * .where/filter(): filter dataframe
+* .dtypes: get columns and datatype in tuples
 
-        * .join(): join dataframes with different ways
-
-        * .union() : union two dataframes with the same schema (this include duplicated values)
-
-        * .distinct(): eliminate duplicated rows
-
-        * .createOrReplaceTempView(name): The lifetime of this temporary table is tied to the SparkSession that was used to create this DataFrame
-          .createTempView(name)
-
-        * .createOrReplaceGlobalTempView(name): The lifetime of this temporary view is tied to this Spark application.
-          .reateGlobalTempView(name)
-
-        * .groupBy(cols): Group by columns
-            .agg(function_agg(col))
-                
-                count()
+* .schema: get schema in format StrcutType and StructField
 
 
-    - Functions 
+**Methods Dataframe**
 
-        * alias(name): set name of a column in Dataframe
+* [*.select() :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/05.-Select_Somenthing.py) get columns of Dataframe
 
-        * lit(value): add literall value
+* [*.where/filter() :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/06.-Filter_Something.py) filter dataframe
 
-        * cast(new_data_type) : convert column a new data type
+* [*.join() :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/08.-Join_Something.py) join dataframes with different ways
 
-        * when() : expresion of conditions like to Case in ANSI-SQL
+* [*.union() :*]() union two dataframes with the same schema (this include duplicated values)
 
-        * isNotNull() : validate if a column is not null
+* [*.distinct() :*]() eliminate duplicated rows
 
-        * isNull() : validate if a column is null
+* [*.createOrReplaceTempView(name) / .createTempView(name) :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/11.-SQL_Dataframe.py) The lifetime of this temporary table is tied to the SparkSession that was used to create this DataFrame
+    
 
-        * between(ini,end): if a columns 
+* [*.createOrReplaceGlobalTempView(name) / .createGlobalTempView(name) :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/11.-SQL_Dataframe.py) The lifetime of this temporary view is tied to this Spark application.
 
-        * asc(col): Return ascending of columns
-
-        * desc(col): Return descending of columns
-
-        * coalesce(col,col): return first column not null
-
-        * current_date() : return current_date
-
-        * date_add(date, days): add days a date give
-
-        * date_format(date,format): convert date to format string
-
-        * date_sub(date, days): sub days to date give
-
-        * to_date(col, format)_: cast col to date
-
-        * drop(col) : drop column
-
-        * fillna(value, subset): replace null values in subset(column)
-
-        * countDistinct(col1,[col2]..): return count distinct values
-
-        * sumDistinct(col1,[col2]..): return sum distinct values
+* [*.groupBy(cols) :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/07.-GroupBy_Having_Somenthing.py) Group by columns
+    .agg(function_agg(col))
+        
 
 
-    - Window Functions
+**Functions**
 
-        * row_number(): Returns a sequential number starting from 1 within a window partition
+* alias(name): set name of a column in Dataframe
 
-        * rank(): Returns the rank of rows within a window partition, with gaps.
+* lit(value): add literall value
 
-        * dense_rank(): Returns the rank of rows within a window partition without any gaps. Where as Rank() returns rank with gaps.
+* cast(new_data_type) : convert column a new data type
 
-        * lag(Col, offset): returns the value that is `offset` rows before the current row, and `null` if there is less than `offset` rows before the current row.
+* when() : expresion of conditions like to Case in ANSI-SQL
 
-        * lead(Col, offset): returns the value that is `offset` rows after the current row, and `null` if there is less than `offset` rows after the current row.
+* isNotNull() : validate if a column is not null
+
+* isNull() : validate if a column is null
+
+* between(ini,end): if a columns 
+
+* asc(col): Return ascending of columns
+
+* desc(col): Return descending of columns
+
+* coalesce(col,col): return first column not null
+
+* current_date() : return current_date
+
+* date_add(date, days): add days a date give
+
+* date_format(date,format): convert date to format string
+
+* date_sub(date, days): sub days to date give
+
+* to_date(col, format)_: cast col to date
+
+* drop(col) : drop column
+
+* fillna(value, subset): replace null values in subset(column)
+
+* countDistinct(col1,[col2]..): return count distinct values
+
+* sumDistinct(col1,[col2]..): return sum distinct values
+
+
+**Window Functions**
+
+* row_number(): Returns a sequential number starting from 1 within a window partition
+
+* rank(): Returns the rank of rows within a window partition, with gaps.
+
+* dense_rank(): Returns the rank of rows within a window partition without any gaps. Where as Rank() returns rank with gaps.
+
+* lag(Col, offset): returns the value that is `offset` rows before the current row, and `null` if there is less than `offset` rows before the current row.
+
+* lead(Col, offset): returns the value that is `offset` rows after the current row, and `null` if there is less than `offset` rows after the current row.
 
 
