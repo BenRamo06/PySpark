@@ -204,100 +204,99 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 #### Spark Session
 
-* [*.createDataFrame(data[, schema, …]) : *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/01.-Create_Dataframe.py) Creates a DataFrame from an RDD, a list or a pandas.DataFram
+* **_[.createDataFrame(data[, schema, …]):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/01.-Create_Dataframe.py)_** *Creates a DataFrame from an RDD, a list or a pandas.DataFrame*
 
-* *.stop():* Shut down the SparkContext (it must be necessaty in our code).
+* **_.stop():_** *Shut down the SparkContext (it must be necessaty in our code).*
 
-* *.builder.appName(name):* Sets a name for the application
+* **_.builder.appName(name):_** *Sets a name for the application*
  
-* *.getOrCreate():* it takes a SparkContext if it exists or it creates one.
+* **_.getOrCreate():_** *it takes a SparkContext if it exists or it creates one.*
 
-* [*.read() : *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/04.-Read_something.py) Read from a file to Dataframe
+* **_[.read():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/04.-Read_something.py)_** *Read from a file to Dataframe*
 
-* [*.sparkContext:*: ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/09.-DF_process_RDD.py) Returns the underlying SparkContext
+* **_[.sparkContext:](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/09.-DF_process_RDD.py)_** *Returns the underlying SparkContext*
 
 #### Attributes Dataframe
 
-* .columns : get name columns in Dataframe
+* **_.columns:_** *get name columns in Dataframe*
 
-* .dtypes: get columns and datatype in tuples
+* **_.dtypes:_** *get columns and datatype in tuples*
 
-* .schema: get schema in format StrcutType and StructField
+* **_.schema:_** *get schema in format StrcutType and StructField*
 
 
 #### Methods Dataframe
 
-* [*.select() :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/05.-Select_Somenthing.py) get columns of Dataframe
+* **_[.select():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/05.-Select_Somenthing.py)_** *get columns of Dataframe*
 
-* [*.where/filter() :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/06.-Filter_Something.py) filter dataframe
+* **_[.where/filter():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/06.-Filter_Something.py)_** *filter dataframe*
 
-* [*.join() :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/08.-Join_Something.py) join dataframes with different ways
+* **_[.join():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/08.-Join_Something.py)_** *join dataframes with different ways*
 
-* [*.union() :*]() union two dataframes with the same schema (this include duplicated values)
+* **_.union():_** *union two dataframes with the same schema (this include duplicated values)*
 
-* [*.distinct() :*]() eliminate duplicated rows
+* **_.distinct():_** *eliminate duplicated rows*
 
-* [*.createOrReplaceTempView(name) / .createTempView(name) : *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/11.-SQL_Dataframe.py) The lifetime of this temporary table is tied to the SparkSession that was used to create this DataFrame
+* **_[.createOrReplaceTempView(name) / .createTempView(name):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/11.-SQL_Dataframe.py)_** *The lifetime of this temporary table is tied to the SparkSession that was used to create this DataFrame*
     
+* **_[.createOrReplaceGlobalTempView(name) / .createGlobalTempView(name):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/11.-SQL_Dataframe.py)_** *The lifetime of this temporary view is tied to this Spark application.*
 
-* [*.createOrReplaceGlobalTempView(name) / .createGlobalTempView(name) :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/11.-SQL_Dataframe.py) The lifetime of this temporary view is tied to this Spark application.
-
-* [*.groupBy(cols) :*](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/07.-GroupBy_Having_Somenthing.py) Group by columns
-    .agg(function_agg(col))
+* **_[groupBy(cols):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/07.-GroupBy_Having_Somenthing.py)_** *Group by columns* <br>
+  **_.agg(function_agg(col)):_** *function of aggregation*
         
 
 
 #### Functions
 
-* alias(name): set name of a column in Dataframe
+* **_.alias(name):_** *set name of a column in Dataframe*
 
-* lit(value): add literall value
+* **_.lit(value):_** *add literall value*
 
-* cast(new_data_type) : convert column a new data type
+* **_.cast(new_data_type):_** *convert column a new data type*
 
-* when() : expresion of conditions like to Case in ANSI-SQL
+* **_.when():_** *expresion of conditions like to Case in ANSI-SQL*
 
-* isNotNull() : validate if a column is not null
+* **_.isNotNull():_** *validate if a column is not null*
 
-* isNull() : validate if a column is null
+* **_.isNull():_** *validate if a column is null*
 
-* between(ini,end): if a columns 
+* **_.between(ini,end):_** *if a columns*
 
-* asc(col): Return ascending of columns
+* **_.asc(col):_** *Return ascending of columns*
 
-* desc(col): Return descending of columns
+* **_.desc(col):_** *Return descending of columns*
 
-* coalesce(col,col): return first column not null
+* **_.coalesce(col,col):_** *return first column not null*
 
-* current_date() : return current_date
+* **_.current_date():_** *return current_date*
 
-* date_add(date, days): add days a date give
+* **_.date_add(date, days):_** *add days a date give*
 
-* date_format(date,format): convert date to format string
+* **_.date_format(date,format):_** *convert date to format string*
 
-* date_sub(date, days): sub days to date give
+* **_.date_sub(date, days):_** *sub days to date give*
 
-* to_date(col, format)_: cast col to date
+* **_.to_date(col, format):_** *cast col to date*
 
-* drop(col) : drop column
+* **_.drop(col):_** *drop column*
 
-* fillna(value, subset): replace null values in subset(column)
+* **_.fillna(value, subset):_** *replace null values in subset(column)*
 
-* countDistinct(col1,[col2]..): return count distinct values
+* **_.countDistinct(col1,[col2]..):_** *return count distinct values*
 
-* sumDistinct(col1,[col2]..): return sum distinct values
+* **_.sumDistinct(col1,[col2]..):_** *return sum distinct values*
 
 
 #### Window Functions
 
-* row_number(): Returns a sequential number starting from 1 within a window partition
+* **_.row_number():_** *Returns a sequential number starting from 1 within a window partition
 
-* rank(): Returns the rank of rows within a window partition, with gaps.
+* **_.rank():_** *Returns the rank of rows within a window partition, with gaps.*
 
-* dense_rank(): Returns the rank of rows within a window partition without any gaps. Where as Rank() returns rank with gaps.
+* **_.dense_rank():_** *Returns the rank of rows within a window partition without any gaps. Where as Rank() returns rank with gaps.*
 
-* lag(Col, offset): returns the value that is `offset` rows before the current row, and `null` if there is less than `offset` rows before the current row.
+* **_.lag(Col, offset):_** *returns the value that is `offset` rows before the current row, and `null` if there is less than `offset` rows before the current row.*
 
-* lead(Col, offset): returns the value that is `offset` rows after the current row, and `null` if there is less than `offset` rows after the current row.
+* **_.lead(Col, offset):_** *returns the value that is `offset` rows after the current row, and `null` if there is less than `offset` rows after the current row.*
 
 
