@@ -148,15 +148,15 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 * **RDD transformations** – Are a kind of operation that takes an RDD as input and produces another RDD as output. Once a transformation is applied to an RDD, it returns a new RDD, the original RDD remains the same and thus are immutable
 
 
-    * [*map():* ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/03.-Process_Lambda.py)* : Transformation is used the apply operations on each elemnt in our RDD
+    * **_[map():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/03.-Process_Lambda.py)_** *Transformation is used the apply operations on each elemnt in our RDD*
 
-    * *[filter(): ]*(https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/05.-Filter_Somenthing.py) : Transformation is used to filter the records in an RDD
+    * **_[filter():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/05.-Filter_Somenthing.py)_** *Transformation is used to filter the records in an RDD*
 
-    * [*toDF(): *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/06.-RDD_to_DF.py) : Transformation is used to create a Dataframe of a RDD
+    * **_[toDF():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/06.-RDD_to_DF.py)_** *Transformation is used to create a Dataframe of a RDD*
 
-    * sortByKey(): sorts the input data by keys from key-value pairs either in ascending or descending order
+    * **_sortByKey():_** *sorts the input data by keys from key-value pairs either in ascending or descending order*
 
-    * [*groupByKey(): *](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/08.-GroupByKey_Somenthing.py)  groups all the values in the given data with the same key together       
+    * **_[groupByKey():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/08.-GroupByKey_Somenthing.py)_** *groups all the values in the given data with the same key together*
 
 
     
