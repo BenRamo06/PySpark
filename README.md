@@ -108,7 +108,7 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 
 Collection of elements partitioned across the nodes of the cluster that can be operated on in parallel. 
 
-Benefits and concepts
+**Benefits and concepts**
 
 * Unit base of Spark
 * They are immutable (Consistency).
@@ -118,26 +118,26 @@ Benefits and concepts
 * They contain pasive execution
 * Compilation errors
 
-Use cases
+**Use cases**
 
 *   When we want to do low-level transformations        
 *   Unstrucutred data       
 *   Schema is unimportant       
 
 
-sparkContext
+**sparkContext**
 
-* [parallelize(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/01.-Create_RDD.py)
+* *[parallelize(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/01.-Create_RDD.py)*
 
-* [textFile(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/02.-Read_Something.py)
-
-
-RDDs contains:
-
-* RDD transformations – Are a kind of operation that takes an RDD as input and produces another RDD as output. Once a transformation is applied to an RDD, it returns a new RDD, the original RDD remains the same and thus are immutable
+* *[textFile(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/02.-Read_Something.py)*
 
 
-    * [map()](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/03.-Process_Lambda.py) : Transformation is used the apply operations on each elemnt in our RDD
+**RDDs contains:**
+
+* **RDD transformations** – Are a kind of operation that takes an RDD as input and produces another RDD as output. Once a transformation is applied to an RDD, it returns a new RDD, the original RDD remains the same and thus are immutable
+
+
+    * *[map()](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/03.-Process_Lambda.py)* : Transformation is used the apply operations on each elemnt in our RDD
 
     * [filter()](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/05.-Filter_Somenthing.py) : Transformation is used to filter the records in an RDD
 
@@ -148,7 +148,7 @@ sortByKey(): sorts the input data by keys from key-value pairs either in ascendi
 groupByKey():  groups all the values in the given data with the same key together
 
     
-* RDD actions – These methods are applied on a resultant RDD and produces a non-RDD value
+* **RDD actions** – These methods are applied on a resultant RDD and produces a non-RDD value
 
         count() : Returns the number of elements of our RDD. 
 
