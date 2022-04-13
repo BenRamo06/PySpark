@@ -185,9 +185,9 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 #### Benefits and concepts
 
-* They contain a schema (columns and data types) or it can be infer.
-* They do parallel processing
-* Runtime errors
+- [x] They contain a schema (columns and data types) or it can be infer.
+- [x] They do parallel processing
+- [x] Runtime errors
 
 #### Use cases
 
