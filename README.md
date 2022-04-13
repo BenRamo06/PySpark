@@ -130,11 +130,11 @@ Use cases
 *   Schema is unimportant       
 
 
-sparkContext
+* sparkContext
 
-[parallelize(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/01.-Create_RDD.py)
+    * [parallelize(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/01.-Create_RDD.py)
 
-textFile()
+    * [textFile(): ](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/02.-Read_Something.py)
 
 
 RDDs contains:
