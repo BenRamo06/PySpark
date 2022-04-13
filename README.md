@@ -4,6 +4,8 @@
 ### 1. Install Python 
 
 ---
+***
+___
 
 ### 2. Download Spark
 
@@ -216,6 +218,8 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 * **_[.sparkContext:](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/09.-DF_process_RDD.py)_** *Returns the underlying SparkContext*
 
+* **_[.sql(query):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/11.-SQL_Dataframe.py)_** *Execute code in ANSI-SQL.*
+
 #### Attributes Dataframe
 
 * **_.columns:_** *get name columns in Dataframe*
@@ -295,8 +299,8 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 * **_.dense_rank():_** *Returns the rank of rows within a window partition without any gaps. Where as Rank() returns rank with gaps.*
 
-* **_.lag(Col, offset):_** *returns the value that is `offset` rows before the current row, and `null` if there is less than `offset` rows before the current row.*
+* **_.lag(col, offset):_** *returns the value that is `offset` rows before the current row, and `null` if there is less than `offset` rows before the current row.*
 
-* **_.lead(Col, offset):_** *returns the value that is `offset` rows after the current row, and `null` if there is less than `offset` rows after the current row.*
+* **_.lead(col, offset):_** *returns the value that is `offset` rows after the current row, and `null` if there is less than `offset` rows after the current row.*
 
 
