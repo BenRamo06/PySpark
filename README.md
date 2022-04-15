@@ -3,9 +3,6 @@
 
 ### 1. Install Python 
 
----
-***
-___
 
 ### 2. Download Spark
 
@@ -50,7 +47,7 @@ After we have downloaded the file, we must do next steps:
 
 Reference: https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-notebook-3-minutes
 
----
+
 
 ### 3. What is Apache Spark?
 
@@ -93,7 +90,6 @@ We can use PySpark multiple language like to: Java, Scala, Python and R
 *   All machine learning applications.
 
 
----
 
 ### 4. SparkContext and SparkSession
 
@@ -108,7 +104,6 @@ SparkContext is Core API of Spark, after of version 2.0, Spark gave us SparkSess
 </p>
 
 
----
 
 ### 5. RDD (Resilient Distributed Datasets)
 
@@ -185,7 +180,6 @@ Collection of elements partitioned across the nodes of the cluster that can be o
     * **_zip():_** *create tuples win two RDD rdd1.zip(rdd2)*
 
 
----
 
 ### 6. Dataframes
 
@@ -256,7 +250,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 * **_.lit(value):_** *add literall value*
 
-* **_.cast(new_data_type):_** *convert column a new data type*
+* **_.cast([new_data_type](https://spark.apache.org/docs/latest/sql-ref-datatypes.html)):_** *convert column a new data type* 
 
 * **_.when():_** *expresion of conditions like to Case in ANSI-SQL*
 
@@ -282,7 +276,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 * **_.to_date(col, format):_** *cast col to date*
 
-* **_.drop(col):_** *drop column*
+* **_.drop(col [,col2..]):_** *drop a column or multiple columns from a Dataframe*
 
 * **_.fillna(value, subset):_** *replace null values in subset(column)*
 
