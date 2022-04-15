@@ -171,7 +171,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
     
     * **_[getNumPartitions():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py)_** *used to know how partitions have the RDD.*
     
-    * **_[repartition(num):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py)_** *used to increase or decrease the RDD partitions*
+    * **_[repartition(num [,col]):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py)_** *used to increase or decrease the RDD partitions*
     
     * **_[coalesce(num):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/RDD/07.-Task_Partitions.py)_** *used to only decrease the RDD partitions*
     
@@ -231,7 +231,7 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 * **_[.join():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/08.-Join_Something.py)_** *join dataframes with different ways*
 
-* **_.union():_** *union two dataframes with the same schema (this include duplicated values)*
+* **_.union(dataframe):_** *union two dataframes both must have the same schema and number of columns (note:this operation includes duplicated values)*
 
 * **_.distinct():_** *eliminate duplicated rows*
 
@@ -242,6 +242,12 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 * **_[groupBy(cols):](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/07.-GroupBy_Having_Somenthing.py)_** *Group by columns* <br>
   **_.agg(function_agg(col)):_** *function of aggregation*
         
+
+* **_[.na.drop():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/12.-Manipulate_nulls.py)_** *Drop rows or columns with null values* 
+
+* **_[.na.fill():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/12.-Manipulate_nulls.py)_** *fill null value to any value*
+
+* **_[.na.replace():](https://github.com/BenRamo06/PySpark/blob/master/pipeline/Dataframe/12.-Manipulate_nulls.py)_** *replace value nulls*
 
 
 #### Functions
@@ -264,7 +270,9 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 
 * **_.desc(col):_** *Return descending of columns*
 
-* **_.coalesce(col,col):_** *return first column not null*
+* **_.coalesce(col,col[,col...]):_** *return first column not null*
+
+* **_.limit(number):_** *return number of rows specified*
 
 * **_.current_date():_** *return current_date*
 

@@ -50,7 +50,11 @@ data = data.select(
 
 
 
-data.write.partitionBy("Tipo").option("header",True).mode("overwrite").csv('/home/benito.ramos/Desktop/GIT/PySpark/outputs/pokemon_out_"')
+# partition = will take column Tipo to generate outputs it means every distinct value in this column will create a file.
+
+# mode=
+
+# data.write.partitionBy("Tipo").option("header",True).mode("overwrite").csv('/home/benito.ramos/Desktop/GIT/PySpark/outputs/pokemon_out_"')
 
 spark.stop()
 
