@@ -89,6 +89,13 @@ Diferences between RDDs, DataFrames and Dataset
 
 ### **Data Proc (Compute and Storage separated)**
 
+**Architecture**
+
+<p align="center">
+<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Arquitecture_DataProc.png")>
+</p>
+
+
 
 
 **Best Practices**
@@ -101,6 +108,12 @@ Diferences between RDDs, DataFrames and Dataset
 - Create cluster with mix of VMS and PVMS consider evaluating the correct ratio between preemptible nodes and non-preemptible nodes, by performing job runs’ tests. Use preemptible for non-critical jobs
 - Divide cluster on-premise in many cluster ephemeral
 - Create labels on clusters and jobs to find logs faster
+
+
+<p align="center">
+<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Arquitecture_Best_DataProc.png")>
+</p>
+
 
 **Benefits**
 
@@ -130,7 +143,8 @@ Initialization actions --> install additional components of the cluster. (librar
 	* Cluster involves frequent batch jobs or streaming jobs wich run 24x7
 	* ad hoc analytical queries?
 - Cluster ephemeral
-	* Required resources are active only when being used. You only pay for what you use. 
+	* Required resources are active only when being used (On-demand).
+	* You only pay for what you use. 
 	* Create Cluster --> Run Cluster -->  Delete Cluster
 
 **Logging**
@@ -143,8 +157,8 @@ Initialization actions --> install additional components of the cluster. (librar
 **Orchestation**
 
 
-What is a DAG?
-The DAG itself doesn't care about what is happening inside the tasks; it is merely concerned with how to execute them
+What is a DAG ?
+The Directed Acyclic Graph (DAG) itself doesn't care about what is happening inside the tasks; it is merely concerned with how to execute them
 		
 <p align="center">
 <img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/DAG.png")>
@@ -179,13 +193,6 @@ The DAG itself doesn't care about what is happening inside the tasks; it is mere
 
 
 
-
-
-
-
-
-
-
 ### **Migration to GCP**
 
 **Move data (two options)**
@@ -204,9 +211,16 @@ The DAG itself doesn't care about what is happening inside the tasks; it is mere
 
 **Define kind of migration**
 
-- Lift & shift migration (maintain hadoop cluster with some VMs)
-- Migration into cloud components (e.g. Dataproc with several optimizations)
+- Lift & shift migration (e.g. copy dta to GCS, Update prefix hdfs:// to gs://, Create a Cloud Dataproc cluster and run your job on the cluster against the data you copied to Cloud Storage.)
+- Migration into cloud components (e.g. Dataproc with several optimizations: ephemeral jobs, long live jobs )
 - Migration into most-optimized cloud services (e.g. migrate Spark into Beam with Dataflow in GCP)
+
+
+**Migrate code**
+
+<p align="center">
+	<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Migrate_code.png")>
+</p>
 
 
 <!-- 
