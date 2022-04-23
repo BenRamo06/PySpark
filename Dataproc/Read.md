@@ -144,14 +144,23 @@ Initialization actions --> install additional components of the cluster. (librar
 
 
 What is a DAG? (images/Work_Templates_Architecture.png, images/Work_Templates_Example.png)
-
+<!-- 
 <p align="left">
   <img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Architecture.png")>
 </p>
 
 <p align="right">
   <img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Example.png")>
-</p>
+</p> -->
+
+<div id="mainDiv"> 
+    <div id="divOne" class="boxes"> 
+	<img src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Architecture.png"> 
+    </div> 
+    <div id="divTwo" class="boxes"> 
+	<img src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Example.png"> 
+    </div> 
+</div> 
 
 - Work Templates (reusable workflow configuration, for managing and executing workflows. ) 
 
