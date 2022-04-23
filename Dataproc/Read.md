@@ -92,7 +92,7 @@ Diferences between RDDs, DataFrames and Dataset
 **Architecture**
 
 <p align="center">
-<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Arquitecture_DataProc.png")>
+<img width="750" src="https://github.com/BenRamo06/PySpark/blob/master/images/Arquitecture_DataProc.png")>
 </p>
 
 
@@ -113,7 +113,7 @@ Diferences between RDDs, DataFrames and Dataset
 
 
 <p align="center">
-<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Arquitecture_Best_DataProc.png")>
+<img width="750" src="https://github.com/BenRamo06/PySpark/blob/master/images/Arquitecture_Best_DataProc.png")>
 </p>
 
 
@@ -162,7 +162,7 @@ Initialization actions --> install additional components of the cluster. (librar
 		* This disadvantage is related to the cluster startup time, it takes around 90 seconds to spin up the cluster and for that reason, this architecture doesn’t work or wasn't designed for short jobs or interactive jobs. 
 
 <p align="center">
-<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Ephemeral.png")>
+<img width="440" src="https://github.com/BenRamo06/PySpark/blob/master/images/Ephemeral.png")>
 </p>
 Ephemeral clusters means that you spin up a cluster when you need to run a job and then the cluster is deleted when the job is completed.
 
@@ -186,7 +186,7 @@ Ephemeral clusters means that you spin up a cluster when you need to run a job a
 
 
 <p align="center">
-<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Pool.png")>
+<img width="440" src="https://github.com/BenRamo06/PySpark/blob/master/images/Pool.png")>
 </p>
 We have 3 clusters. The group label is  pool-1 and is set to the three clusters. 	
 Every job submitted that contains this label would run in any of these three Clusters.	 
@@ -268,7 +268,7 @@ The Directed Acyclic Graph (DAG) itself doesn't care about what is happening ins
 **Migrate code**
 
 <p align="center">
-<img width="700" src="https://github.com/BenRamo06/PySpark/blob/master/images/Migrate_code.png")>
+<img width="750" src="https://github.com/BenRamo06/PySpark/blob/master/images/Migrate_code.png")>
 </p>
 
 
