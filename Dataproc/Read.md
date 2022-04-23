@@ -210,7 +210,7 @@ What is a DAG ?
 The Directed Acyclic Graph (DAG) itself doesn't care about what is happening inside the tasks; it is merely concerned with how to execute them
 		
 <p align="center">
-<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/DAG.png")>
+<img width="440" src="https://github.com/BenRamo06/PySpark/blob/master/images/DAG.png")>
 </p>
 
 
@@ -221,11 +221,11 @@ The Directed Acyclic Graph (DAG) itself doesn't care about what is happening ins
 
 
 		<p align="center">
-		<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Architecture.png")>
+		<img width="440" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Architecture.png")>
 		</p>
 
 		<p align="center">
-		<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Example.png")>
+		<img width="440" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Example.png")>
 		</p>
 
 	* Cluster selector
