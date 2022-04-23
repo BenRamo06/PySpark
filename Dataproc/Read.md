@@ -154,10 +154,10 @@ What is a DAG? (images/Work_Templates_Architecture.png, images/Work_Templates_Ex
 </p> -->
 
 <div id="mainDiv"> 
-    <div id="divOne" class="boxes"> 
+    <div id="divOne"> 
 	<img src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Architecture.png"> 
     </div> 
-    <div id="divTwo" class="boxes"> 
+    <div id="divTwo"> 
 	<img src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Example.png"> 
     </div> 
 </div> 
