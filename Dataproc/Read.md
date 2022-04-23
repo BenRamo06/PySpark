@@ -144,28 +144,21 @@ Initialization actions --> install additional components of the cluster. (librar
 
 
 What is a DAG? (images/Work_Templates_Architecture.png, images/Work_Templates_Example.png)
-<!-- 
-<p align="left">
-  <img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Architecture.png")>
-</p>
 
-<p align="right">
-  <img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Example.png")>
-</p> -->
-
-<div id="mainDiv"> 
-    <div id="divOne"> 
-	<img src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Architecture.png"> 
-    </div> 
-    <div id="divTwo"> 
-	<img src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Example.png"> 
-    </div> 
-</div> 
 
 - Work Templates (reusable workflow configuration, for managing and executing workflows. ) 
 
 	* Managed cluster
 		The workflow will create this "ephemeral" cluster to run workflow jobs, and then delete the cluster when the workflow is finished.
+
+
+		<p align="center">
+		<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Architecture.png")>
+		</p>
+
+		<p align="center">
+		<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Example.png")>
+		</p>
 
 	* Cluster selector
 		A workflow template can specify an existing cluster on which to run workflow jobs by specifying one or more user labels that were previously applied to one or more clusters. 
