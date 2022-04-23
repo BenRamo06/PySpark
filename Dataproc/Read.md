@@ -143,7 +143,12 @@ Initialization actions --> install additional components of the cluster. (librar
 **Orchestation**
 
 
-What is a DAG? (images/Work_Templates_Architecture.png, images/Work_Templates_Example.png)
+What is a DAG?
+The DAG itself doesn't care about what is happening inside the tasks; it is merely concerned with how to execute them
+		
+<p align="center">
+<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/DAG.png")>
+</p>
 
 
 - Work Templates (reusable workflow configuration, for managing and executing workflows. ) 
