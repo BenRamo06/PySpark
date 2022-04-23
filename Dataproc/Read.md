@@ -268,7 +268,7 @@ The Directed Acyclic Graph (DAG) itself doesn't care about what is happening ins
 **Migrate code**
 
 <p align="center">
-<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Migrate_code.png")>
+<img width="700" src="https://github.com/BenRamo06/PySpark/blob/master/images/Migrate_code.png")>
 </p>
 
 
