@@ -106,8 +106,10 @@ Diferences between RDDs, DataFrames and Dataset
 - If we have more than 10K input file. We need to create files with more capacity
 - Use Pereemptible VMs lower cost
 - Create cluster with mix of VMS and PVMS consider evaluating the correct ratio between preemptible nodes and non-preemptible nodes, by performing job runs’ tests. Use preemptible for non-critical jobs
-- Divide cluster on-premise in many cluster ephemeral
-- Create labels on clusters and jobs to find logs faster
+- Divide cluster on-premise in many cluster ephemeral.
+- Create labels on clusters and jobs to find logs faster.
+- Separate your development and production environments onto different clusters.
+
 
 
 <p align="center">
@@ -141,11 +143,58 @@ Initialization actions --> install additional components of the cluster. (librar
 
 - Cluster long live
 	* Cluster involves frequent batch jobs or streaming jobs wich run 24x7
-	* ad hoc analytical queries?
-- Cluster ephemeral
+	* it's mandatory a cluster in warm conditions all the time
+	* There is a need to let analysis quickly (ad hoc analytical queries)
+		Note: Create a ephemeral cluster takes around 90 seconds (you can change long live to ephemeral)
+- Cluster ephemeral (one cluster per workflow)
 	* Required resources are active only when being used (On-demand).
 	* You only pay for what you use. 
 	* Create Cluster --> Run Cluster -->  Delete Cluster
+
+		Pros
+		* Can pick appropriate configuration such as machine type and GPUs on a per-job basis
+		* Can use auto zone placement to find a GCE zone with capacity for job
+		* Jobs are isolated from one another so do not compete for resources
+		* Each job can run as a separate service account
+		* Fast cluster startup time (< 90s) is negligible for jobs that take > 10m.
+
+		Cons
+		* This disadvantage is related to the cluster startup time, it takes around 90 seconds to spin up the cluster and for that reason, this architecture doesn’t work or wasn't designed for short jobs or interactive jobs. 
+
+<p align="center">
+<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Ephemeral.png")>
+</p>
+Ephemeral clusters means that you spin up a cluster when you need to run a job and then the cluster is deleted when the job is completed.
+
+
+- Pooled
+	* It works using labels (Labels are key-value pairs that can be tagged to Dataproc clusters and jobs)
+	* A Set of clusters that can process a job,
+	* Labels can be added to a group of clusters or a single cluster.
+
+		Pros
+		* This architecture provides higher utilization for shorter jobs.
+		* Start time for applications such as Hive is instantaneous 
+		* Cluster pools is a good use for autoscaling feature.
+		* If one cluster gets into an ERROR the pool is still working because it is resilient.
+		* Jobs can be labelled individually for chargeback
+
+		Cons
+
+		* Set up and manage a cluster pool requires more effort compared to Ephemeral clusters.
+		* There is a consideration about auto-scaling: Cluster pools are not great for larger jobs. Jobs which are larger than graceful decommissioning time-out. in general, you want to pick a graceful timeout that’s longer than your longest job (e.g. 1h). If you have jobs that take more than 30 minutes, you should move them to their own ephemeral clusters to avoid blocking graceful decommissioning.
+
+
+<p align="center">
+<img width="340" src="https://github.com/BenRamo06/PySpark/blob/master/images/Pool.png")>
+</p>
+We have 3 clusters. The group label is  pool-1 and is set to the three clusters. 	
+Every job submitted that contains this label would run in any of these three Clusters.	 
+
+Besides each cluster have its own label set, for example the third cluster has the cluster label set as cluster-3. So if a job is submitted with the two labels, pool-1 and cluster-3, that job will run in the third Cluster. 
+
+
+
 
 **Logging**
 
