@@ -136,7 +136,6 @@ Dataproc charge = # of vCPUs * hours * Dataproc price = 24 * 2 * $0.01 = $0.48
 
 **Configuration**
 
-
 - Single node (1 master: 0 workers)
 - Standard  (1 master: n workers)
 - High Availability (3 master: n workers)	
@@ -146,24 +145,24 @@ Initialization actions --> install additional components of the cluster. (librar
 **Cluster**
 
 
-- Cluster long live
+- **Cluster long live**
 	* Cluster involves frequent batch jobs or streaming jobs wich run 24x7
 	* it's mandatory a cluster in warm conditions all the time
 	* There is a need to let analysis quickly (ad hoc analytical queries)
 		Note: Create a ephemeral cluster takes around 90 seconds (you can change long live to ephemeral)
-- Cluster ephemeral (one cluster per workflow)
+- **Cluster ephemeral** (one cluster per workflow)
 	* Required resources are active only when being used (On-demand).
 	* You only pay for what you use. 
 	* Create Cluster --> Run Cluster -->  Delete Cluster
 
-		Pros
+		**Pros**
 		* Can pick appropriate configuration such as machine type and GPUs on a per-job basis
 		* Can use auto zone placement to find a GCE zone with capacity for job
 		* Jobs are isolated from one another so do not compete for resources
 		* Each job can run as a separate service account
 		* Fast cluster startup time (< 90s) is negligible for jobs that take > 10m.
 
-		Cons
+		**Cons**
 		* This disadvantage is related to the cluster startup time, it takes around 90 seconds to spin up the cluster and for that reason, this architecture doesn’t work or wasn't designed for short jobs or interactive jobs. 
 
 <p align="center">
@@ -172,19 +171,19 @@ Initialization actions --> install additional components of the cluster. (librar
 Ephemeral clusters means that you spin up a cluster when you need to run a job and then the cluster is deleted when the job is completed.
 
 
-- Pooled
+- **Pooled**
 	* It works using labels (Labels are key-value pairs that can be tagged to Dataproc clusters and jobs)
 	* A Set of clusters that can process a job,
 	* Labels can be added to a group of clusters or a single cluster.
 
-		Pros
+		**Pros**
 		* This architecture provides higher utilization for shorter jobs.
 		* Start time for applications such as Hive is instantaneous 
 		* Cluster pools is a good use for autoscaling feature.
 		* If one cluster gets into an ERROR the pool is still working because it is resilient.
 		* Jobs can be labelled individually for chargeback
 
-		Cons
+		**Cons**
 
 		* Set up and manage a cluster pool requires more effort compared to Ephemeral clusters.
 		* There is a consideration about auto-scaling: Cluster pools are not great for larger jobs. Jobs which are larger than graceful decommissioning time-out. in general, you want to pick a graceful timeout that’s longer than your longest job (e.g. 1h). If you have jobs that take more than 30 minutes, you should move them to their own ephemeral clusters to avoid blocking graceful decommissioning.
@@ -216,11 +215,11 @@ Scaling down can be less straightforward than scaling up and can result in task 
 
 **Storage**
 
-- GCS
+- **GCS**
 	*	Google Cloud Storage is the preferred storage option for all **persistent storage (data)** needs. 
 	*	Also GCS is a object **storage**, a object storage are more like a “key value store,” where objects are arranged in flat buckets. Object storage systems only allow atomic replacement of entire object
 
-- HDFS storage on Dataproc
+- **HDFS** storage on Dataproc
 	*	It is built on top of persistent disks (PDs) attached to worker nodes. This means data stored on HDFS is transient with relatively higher storage costs.
 	*	Zonal disks have higher read/write throughput than regional ones.
 	*	PDs come in a few different types to accommodate different performance and cost considerations (Solid State Drives SSD, persisten disk). 
@@ -244,9 +243,9 @@ The Directed Acyclic Graph (DAG) itself doesn't care about what is happening ins
 </p>
 
 
-- Work Templates (reusable workflow configuration, for managing and executing workflows. ) 
+- **Work Templates** (reusable workflow configuration, for managing and executing workflows. ) 
 
-	* Managed cluster
+	* **Managed cluster**
 		The workflow will create this "ephemeral" cluster to run workflow jobs, and then delete the cluster when the workflow is finished.
 
 
@@ -258,16 +257,16 @@ The Directed Acyclic Graph (DAG) itself doesn't care about what is happening ins
 		<img width="440" src="https://github.com/BenRamo06/PySpark/blob/master/images/Work_Templates_Example.png")>
 		</p>
 
-	* Cluster selector
+	* **Cluster selector**
 		A workflow template can specify an existing cluster on which to run workflow jobs by specifying one or more user labels that were previously applied to one or more clusters. 
 		The workflow will run on a cluster that matches all of the specified labels. If multiple clusters match the label(s), 
 		Dataproc will select the cluster with the most YARN available memory to run all workflow jobs. 
 		At the end of workflow, the selected cluster is not deleted
 
-- Cloud Composer
+- **Cloud Composer**
 
 	 
-		We can use Coud composer to generate DAGs y schedule us clusters.
+We can use Coud composer to generate DAGs y schedule us clusters.
 
 
 
