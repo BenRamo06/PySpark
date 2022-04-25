@@ -11,6 +11,7 @@ What is a cluster
 ### **Hadoop (Processing Disk, batch, Compute and Storage together, Master/Slave Architecture)**
 
 #### **Storage --> HDFS (Hadoop Distruibed File System)**
+- A file systems are files are arranged in a hierarchy of folders, File systems are designed to allow for random writes anywhere in the file.
 - Block Structured file system
 - Files are divided into blocks and they are distributed in nodes (workers|slaves) across the cluster
 - 128 MB is default configuration block size
@@ -120,7 +121,11 @@ Diferences between RDDs, DataFrames and Dataset
 **Benefits**
 
 
-- Low cost  --> 1 c per virtual cpu per cluster per hour
+- Low cost  --> 1 c per virtual cpu per cluster per hour		
+
+Ex: 6 clusters (1 main + 5 workers) of 4 CPUs each ran for 2 hours would cost $.48.  	
+Dataproc charge = # of vCPUs * hours * Dataproc price = 24 * 2 * $0.01 = $0.48
+
 - Fast 		--> to start, scale and shut down near 90 seconds or less on average  
 - Reizable  --> Cluster can be created and scaled quickly
 - Open Source --> You can use hadoop or spark, because Dataproc manages updates
@@ -193,14 +198,39 @@ Every job submitted that contains this label would run in any of these three Clu
 
 Besides each cluster have its own label set, for example the third cluster has the cluster label set as cluster-3. So if a job is submitted with the two labels, pool-1 and cluster-3, that job will run in the third Cluster. 
 
+**Preemptible VMs (PVMs)**
+
+PVMs are highly affordable, **short-lived** compute instances suitable for **batch jobs and fault-tolerant workloads**. Their price is significantly lower than normal VMs but they can be taken away from clusters at any time without any notice. *Using a certain percentage of PVMs in clusters running fault tolerant workloads can reduce costs*. However, remember that using a high percentage of PVMs or using it for jobs which are not fault tolerant can result in failed jobs or other related issues.
 
 
+
+**Auto Scaling**
+
+Auto scaling enables clusters to scale up or down based on YARN memory metrics. Determining the correct auto scaling policy for a cluster may require careful monitoring and tuning over a period of time.
+
+Scaling down can be less straightforward than scaling up and can result in task reprocessing or job failures. This is because map tasks store intermediate shuffle data on the local disk. When nodes are decommissioned, shuffle data can be lost for running jobs. Some common symptoms for this are:
+
+- MapReduce Jobs - “Failed to fetch” 
+- Spark - “FetchFailedException”, “Failed to connect to
+
+
+**Storage**
+
+- GCS
+	*	Google Cloud Storage is the preferred storage option for all **persistent storage (data)** needs. 
+	*	Also GCS is a object **storage**, a object storage are more like a “key value store,” where objects are arranged in flat buckets. Object storage systems only allow atomic replacement of entire object
+
+- HDFS storage on Dataproc
+	*	It is built on top of persistent disks (PDs) attached to worker nodes. This means data stored on HDFS is transient with relatively higher storage costs.
+	*	Zonal disks have higher read/write throughput than regional ones.
+	*	PDs come in a few different types to accommodate different performance and cost considerations (Solid State Drives SSD, persisten disk). 
+	*	Local SSDs can provide faster read and write times than persistent disk. 
 
 **Logging**
 
 
-- gcloud dataproc jobs submit hadoop --driver-log-levels 
-- spark.sparkContext.setLogLevel("DEBUG")
+- gcloud dataproc jobs submit hadoop --driver-log-levels  = parameter to control the level of logging into Cloud Logging, send jobs to cluster 
+- spark.sparkContext.setLogLevel("DEBUG")  = code jobs
 
 
 **Orchestation**
@@ -237,7 +267,7 @@ The Directed Acyclic Graph (DAG) itself doesn't care about what is happening ins
 - Cloud Composer
 
 	 
-
+		We can use Coud composer to generate DAGs y schedule us clusters.
 
 
 
