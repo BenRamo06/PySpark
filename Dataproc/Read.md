@@ -87,6 +87,78 @@ UnBounded - DStreams
 
 Diferences between RDDs, DataFrames and Dataset
 
+RDD's --> data without schema
+Datafranes --> data with schema
+
+
+### **Hive**
+
+Hive was developed with a vision to incorporate the concepts of tables, columns just like SQL. Hive is a data warehouse system which is used for querying and analyzing large datasets stored in HDFS. Hive uses a query language call HiveQL which is similar to SQL.
+
+**Hive Metastore**
+
+Metastore is the central repository of Apache Hive metadata. It stores metadata for Hive tables (like their schema and location) and partitions in a relational database. It provides client access to this information by using metastore service API.
+
+**Migration Hive Metastore**
+Service in GCP to store Hive Metastore.
+
+You must now prepare the metadata stored in your Hive metastore database for import by making a **MySQL** or **AVRO** dump file and placing it into a Cloud Storage bucket.
+**note:** For best results, use Cloud Storage buckets that are located in the same region as your Dataproc Metastore service
+
+<p align="center">
+<img width="750" src="https://github.com/BenRamo06/PySpark/blob/master/images/Hive_Metastore.png")>
+</p>
+
+``` bash
+gcloud metastore services import gcs SERVICE \
+--import-id=IMPORT_ID \
+--location=LOCATION \
+--description=DESCRIPTION \
+--dump-type=DUMP_TYPE \
+--database-dump=DATABASE_DUMP 
+```
+
+**_SERVICE:_** The name of the service.
+**_IMPORT_ID:_** The ID of this metadata import.
+**_LOCATION:_** Refers to a Google Cloud region.
+**_DESCRIPTION:_** Optional: The import description. You can edit this later using gcloud metastore services imports update IMPORT
+**_DUMP_TYPE:_** The type of the external database. Defaults to mysql.
+**_DATABASE_DUMP:_** The path to the Cloud Storage folder for Avro or object for MySQL containing the database files. It must begin with gs://.
+
+
+After you create a Dataproc Metastore service, you can attach either of the following to use the service as its Hive metastore:
+
+* Option 1
+
+``` bash
+ gcloud dataproc clusters create CLUSTER_NAME \
+--dataproc-metastore=projects/PROJECT_ID/locations/LOCATION/services/SERVICE \
+--region=LOCATION
+```
+ 
+**_CLUSTER_NAME:_** with the name of the new cluster.
+**_PROJECT_ID:_** with the project ID of the project you created your Dataproc Metastore service in.
+**_LOCATION:_** with the same region you specified for the Dataproc Metastore service.
+**_SERVICE:_** with the Dataproc Metastore service name.
+
+* Option 2
+
+``` bash
+gcloud dataproc clusters create CLUSTER_NAME \
+--properties="hive:hive.metastore.uris=$ENDPOINT_URI,hive:hive.metastore.warehouse.dir=$WAREHOUSE_DIR/hive-warehouse"
+```
+
+**_ENDPOINT_URI:_** Dataproc --> Metastore --> Configuration --> URI
+**_WAREHOUSE_DIR:_** Dataproc --> Metastore --> Configuration --> Metastore config overrides --> hive.metastore.warehouse.dir
+
+
+**Connect with Spark**
+
+<p align="center">
+<img width="750" src="https://github.com/BenRamo06/PySpark/blob/master/images/Hive_Metastore.png")>
+</p>
+
+
 
 ### **Data Proc (Compute and Storage separated)**
 
@@ -314,7 +386,6 @@ Object System
 
 
 serverless
-metastore?
 preemtable / on demand.
 spark shell   spark submit
 spark 
