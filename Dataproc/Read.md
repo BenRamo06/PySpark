@@ -91,6 +91,59 @@ RDD's --> data without schema
 Datafranes --> data with schema
 
 
+**Schema-on-write**
+
+The data structure must be created before ingest and data will be validate against this data structure.
+
+Schema-on-write helps to execute the query faster because the data is already loaded in a strict format and you can easily find the desired data. However, this requires much more preliminary preparation and continuous transformation of incoming data, and the cost of making changes to the schema is high and should be avoided.
+
+**Schema on-read**
+The data structures are not applied or initiated before the ingested; it is created during the ETL process
+
+Schema-on-read, on the other hand, can provide flexibility, scalability, and prevent some human mistakes. It is generally recommended that data is stored in the original raw format (just in case) and optimized in another format suitable for further data processing
+
+<p align="center">
+<img width="750" src="https://github.com/BenRamo06/PySpark/blob/master/images/Schemas_versus_2.png")>
+</p>
+
+<p align="center">
+<img width="750" src="https://github.com/BenRamo06/PySpark/blob/master/images/Schemas_versus.png")>
+</p>
+
+
+### **More components Ecosystem Hadoop**
+
+**Hudi ( Hadoop Updates, Deletes and Inserts):**  
+Datalake, we use file based storage (parquet, ORC) to store data in query optimized columnar format.
+Handle Updates, deletes and insert operation  
+ACID properties like in case of a RDBMS.
+Hudi maintains a timeline of all actions performed on the table at different points in time
+
+Hudi supports two table types: copy-on-write and merge-on-read. The copy-on-write table type stores data using exclusively columnar file formats (e.g., Apache Parquet). Via copy-on-write, updates simply version and rewrite the files by performing a synchronous merge during write.
+
+The merge-on-read table type stores data using a combination of columnar (e.g., Apache parquet) and row based (e.g., Apache Avro) file formats. Updates are logged to delta files and later compacted to produce new versions of columnar files synchronously or asynchronously.
+
+
+**Nifi (Niagara Files)**
+Designed to handle big amounts of data and automate dataflow. It’s a simple, powerful data processing and distribution system, allowing for the creation of scalable directed graphs of data routing and transformation. Data may be filtered, adjusted, joined, divided, enhanced, and verified. NiFi 
+
+NiFi is an ETL tool typically used for long-running jobs, suitable for processing both periodic batches and streaming data.
+
+ **Apache Ranger** 
+Is a framework to enable, monitor and manage comprehensive data security across the Hadoop platform.
+
+Apache Ranger uses two key components for authorization:
+
+Apache Ranger policy admin server - This server allows you to define the authorization policies for Hadoop applications
+
+Apache Ranger plugin - This plugin validates the access of a user against the authorization policies defined in the Apache Ranger policy admin server
+
+
+**Apache Sqqop**
+Is a tool designed for efficiently transferring bulk data between Apache Hadoop and structured datastores such as relational databases.
+
+
+
 ### **Hive**
 
 Hive was developed with a vision to incorporate the concepts of tables, columns just like SQL. Hive is a data warehouse system which is used for querying and analyzing large datasets stored in HDFS. Hive uses a query language call HiveQL which is similar to SQL.
@@ -273,6 +326,11 @@ Besides each cluster have its own label set, for example the third cluster has t
 
 PVMs are highly affordable, **short-lived** compute instances suitable for **batch jobs and fault-tolerant workloads**. Their price is significantly lower than normal VMs but they can be taken away from clusters at any time without any notice. *Using a certain percentage of PVMs in clusters running fault tolerant workloads can reduce costs*. However, remember that using a high percentage of PVMs or using it for jobs which are not fault tolerant can result in failed jobs or other related issues.
 
+ Prreemptible instance are used to add capacity, they are not used for data storage.
+
+
+ If a PVM is beign reclaimed for GCE(Google compute engine), it will slow down, but job won't be stopped, only it will be processed in a VM "permanent"
+
 
 
 **Auto Scaling**
@@ -382,14 +440,26 @@ File System
 Object System
 	it doesn't have a jerarquie
 	Immutable
-	Versioning
+	Versioning -->
 
 
-serverless
-preemtable / on demand.
-spark shell   spark submit
-spark 
-productos
-apache hudi  vs  delta lake
-ranger (similar IAM) 
--->
+RDBMS vs mongo
+
+experiencia en spark --> map reduce (tetxo)
+API SPARK --> 
+SPARK SQL -->
+
+Experiencia (texto)
+
+
+databricks
+hdfs similar a gsutil
+
+
+
+
+### **spark shell or spark submit**
+
+ * spark-shell should be used for interactive queries, it needs to be run in yarn-client mode so that the machine you're running on acts as the driver.
+
+ * spark-submit  you submit jobs to the cluster then the task runs in the cluster. Normally you would run in cluster mode so that YARN can assign the driver to a suitable node on the cluster with available resources.
