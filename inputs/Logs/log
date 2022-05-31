@@ -1,0 +1,10 @@
+|1     | |2     | |3   |     |4  | |5                                                                          |
+09-15-16 05:23:45 B:VVBN     09064 Port 22 Device 10400 Remote 44 13331 Link Up RP2016
+09-15-16 05:23:44 A:QAWE     09064 Port 22 Device 10400 Remote 44 13331 Link Up RP2016
+09-15-16 05:23:44 B:VVBN     13425 Port 22 Device 10400 Remote 44 13331 Receive Time Error: 24666 23270 1396 69
+09-15-16 05:23:43 B:QAWE     13372 Port 22 Device 10400 Remote 44 13331 Send Time Error: 444 1888 1444 69
+09-15-16 05:23:43 A:VVBN     13425 Port 22 Device 10400 Remote 44 13331 Receive Time Error: 24666 23270 1396 69
+09-15-16 05:23:43 A:CCBE     13372 Port 22 Device 10400 Remote 44 13331 Send Time Error: 444 1888 1444 69
+09-15-16 05:21:56 B:VVBN     07270 Port 22 Device 10400 Remote 44 13331 AT Timer Expired
+09-15-16 05:21:56 A:CCBE     07270 Port 22 Device 10400 Remote 44 13331 AT Timer Expired
+aaaaaaaa 05:23:43 A:CCBE     13372 Port 22 Device 10400 Remote 44 13331 Receive Time Error 444 1888 1444 69

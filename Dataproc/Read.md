@@ -143,6 +143,9 @@ Apache Ranger plugin - This plugin validates the access of a user against the au
 Is a tool designed for efficiently transferring bulk data between Apache Hadoop and structured datastores such as relational databases.
 
 
+**Delta Lake**
+It’s an open-source data format and transactional data management system, based on Parquet, that makes your data lake reliable by implementing ACID transactions on top of cloud object storage. Delta Lake tables unify batch and streaming data processing right out of the box. And finally, Delta Lake is designed to be 100% compatible with Apache Spark
+
 
 ### **Hive**
 
@@ -213,6 +216,16 @@ gcloud dataproc clusters create CLUSTER_NAME \
 
 
 
+### **spark shell or spark submit**
+
+ * spark-shell should be used for interactive queries, it needs to be run in yarn-client mode so that the machine you're running on acts as the driver.
+
+ * spark-submit  you submit jobs to the cluster then the task runs in the cluster. Normally you would run in cluster mode so that YARN can assign the driver to a suitable node on the cluster with available resources.
+
+ 
+ pyspark supports stand alone in the so called "local mode" which means the driver runs on the machine that submits the job. Only Yarn supports cluster mode for pyspark unfortuantely.
+
+
 ### **Data Proc (Compute and Storage separated)**
 
 **Architecture**
@@ -220,7 +233,6 @@ gcloud dataproc clusters create CLUSTER_NAME \
 <p align="center">
 <img width="750" src="https://github.com/BenRamo06/PySpark/blob/master/images/Arquitecture_DataProc.png")>
 </p>
-
 
 
 
@@ -265,12 +277,24 @@ Dataproc charge = # of vCPUs * hours * Dataproc price = 24 * 2 * $0.01 = $0.48
 - Standard  (1 master: n workers)
 - High Availability (3 master: n workers)	
 
-Initialization actions --> install additional components of the cluster. (libraries, environments, etc...)
+Initialization actions --> which are executables or scripts that Cloud Dataproc will run on all nodes in the cluster as soon as it’s set up. (libraries, environments, etc...)
+
+**Versioning**
+
+When you create a new Dataproc cluster, the latest available Debian image version will be used by default. You can select a Debian, Rocky Linux or Ubuntu image version when creating a cluster.
+
+Those images can contain different version of product for example:
+
+1.5 Debian version = Hadoop 1.5 and Spark 2.4.8
+2.0 Debian version = Hadoop 3.2.2 and Spark 3.2.1
+
+With that, Dataproc contain versions of images to specific scenario.
+
 
 **Cluster**
 
 
-- **Cluster long live**
+- **Cluster Monolithic|long-running**
 	* Cluster involves frequent batch jobs or streaming jobs wich run 24x7
 	* it's mandatory a cluster in warm conditions all the time
 	* There is a need to let analysis quickly (ad hoc analytical queries)
@@ -331,6 +355,9 @@ PVMs are highly affordable, **short-lived** compute instances suitable for **bat
 
  If a PVM is beign reclaimed for GCE(Google compute engine), it will slow down, but job won't be stopped, only it will be processed in a VM "permanent"
 
+**graceful decommissioning**
+To control shutting down a worker after its jobs are completed
+
 
 
 **Auto Scaling**
@@ -349,16 +376,41 @@ Scaling down can be less straightforward than scaling up and can result in task 
 	*	Google Cloud Storage is the preferred storage option for all **persistent storage (data)** needs. 
 	*	Also GCS is a object **storage**, a object storage are more like a “key value store,” where objects are arranged in flat buckets. Object storage systems only allow atomic replacement of entire object
 
+	* Good if:
+		Your data in ORC, Parquet, Avro, or any other format will be used by different clusters or jobs, and you need data persistence if the cluster terminates.
+		You need high throughput and your data is stored in files larger than 128 MB.
+		You need cross-zone durability for your data.
+		You need data to be highly available—for example, you want to eliminate HDFS NameNode as a single point of failure.
+
 - **HDFS** storage on Dataproc
 	*	It is built on top of persistent disks (PDs) attached to worker nodes. This means data stored on HDFS is transient with relatively higher storage costs.
 	*	Zonal disks have higher read/write throughput than regional ones.
 	*	PDs come in a few different types to accommodate different performance and cost considerations (Solid State Drives SSD, persisten disk). 
 	*	Local SSDs can provide faster read and write times than persistent disk. 
 
+	*	Good if:
+		Your jobs require a lot of metadata operations—for example, you have thousands of partitions and directories, and each file size is relatively small.
+		You modify the HDFS data frequently or you rename directories. (Cloud Storage objects are immutable, so renaming a directory is an expensive operation because it consists of copying all objects to a new key and deleting them afterwards.)
+		You heavily use the append operation on HDFS files.
+		You have workloads that involve heavy I/O. For example, you have a lot of partitioned writes, such as the following:
+		``` python
+		spark.read().write.partitionBy(...).parquet("gs://")
+		```
+		You have I/O workloads that are especially sensitive to latency. For example, you require single-digit millisecond latency per storage operation.
+
 **Logging**
 
+Your Google Cloud jobs send their logs to Cloud Logging, where the logs are easily accessible. You can get your logs in these ways:
 
-- gcloud dataproc jobs submit hadoop --driver-log-levels  = parameter to control the level of logging into Cloud Logging, send jobs to cluster 
+- With a browser-based graphical interface using Logs Explorer in Google Cloud Console.
+- From a local terminal window using the Google Cloud CLI.
+- From scripts or applications using the Cloud Client Libraries for the Cloud Logging API.
+- By calling the Cloud Logging REST API.
+
+Aditional when send a job, we can use propertie --driver-log-levels (parameter to control the level of logging into Cloud Logging, send jobs to cluster )
+- gcloud dataproc jobs submit hadoop --driver-log-levels 
+
+In our code , we can add 
 - spark.sparkContext.setLogLevel("DEBUG")  = code jobs
 
 
@@ -376,7 +428,7 @@ The Directed Acyclic Graph (DAG) itself doesn't care about what is happening ins
 - **Work Templates** (reusable workflow configuration, for managing and executing workflows. ) 
 
 	* **Managed cluster**
-		The workflow will create this "ephemeral" cluster to run workflow jobs, and then delete the cluster when the workflow is finished.
+		The workflow will **create** this **"ephemeral" cluster** to **run jobs**, and then **delete the cluster** when the workflow is finished.
 
 
 		<p align="center">
@@ -394,18 +446,20 @@ The Directed Acyclic Graph (DAG) itself doesn't care about what is happening ins
 		At the end of workflow, the selected cluster is not deleted
 
 - **Cloud Composer**
-
 	 
 We can use Coud composer to generate DAGs y schedule us clusters.
 
+**_[Ephemeral:](https://github.com/BenRamo06/PySpark/blob/master/Dataproc/Scheduler/composer_ephemeral_dataproc.py)_** 
+**_[Worktemplate:](https://github.com/BenRamo06/PySpark/blob/master/Dataproc/Scheduler/composer_worktemplate_dataproc.py)_** 
 
 
 
 ### **Migration to GCP**
 
-**Move data (two options)**
-- Check push model (using distcp in the on-prem to push to GCS)
-- Check pull model (using distcp in the cloud (Dataproc) to pull files from on-prem)
+**Move data**
+Both models use Hadoop DistCp to copy data from your on-premises HDFS clusters to Cloud Storage:
+- Check push model (the source cluster runs the distcp jobs on its data nodes and pushes files directly to Cloud Storage)
+- Check pull model (An ephemeral Dataproc clust         er runs the distcp jobs on its data nodes, pulls files from the source cluster, and copies them to Cloud Storage)
 
 
 **Move Job to GCP**
@@ -443,23 +497,68 @@ Object System
 	Versioning -->
 
 
-RDBMS vs mongo
 
 experiencia en spark --> map reduce (tetxo)
 API SPARK --> 
 SPARK SQL -->
-
 Experiencia (texto)
-
-
-databricks
 hdfs similar a gsutil
 
 
 
+# Aditional
 
-### **spark shell or spark submit**
+## Databricks
 
- * spark-shell should be used for interactive queries, it needs to be run in yarn-client mode so that the machine you're running on acts as the driver.
+A data lakehouse is a data solution concept that combines elements of the data warehouse with those of the data lake.
 
- * spark-submit  you submit jobs to the cluster then the task runs in the cluster. Normally you would run in cluster mode so that YARN can assign the driver to a suitable node on the cluster with available resources.
+A data lakehouse enables a single repository for all your data (structured, semi-structured, and unstructured) while enabling best-in-class machine learning, business intelligence, and streaming capabilities.
+
+<p align="center">
+<img width="750" src="https://github.com/BenRamo06/PySpark/blob/master/images/Data_Lakehouse.png")>
+</p>
+
+
+### ACID
+ACID is a concept (and an acronym) that refers to the four properties of a transaction in a database system, which are: Atomicity, Consistency, Isolation and Durability.
+
+**Atomicity**
+The transaction should be completely executed or fails completely
+
+**Consistency**
+The transaction maintains data integrity constraints, leaving the data consistent and won't corrupt the database.
+The data that is saved in the database must always be valid (the data will be valid according to defined rules, including any constraints, cascades, and triggers that have been applied on the database), this way the corruption of the database that can be caused by an illegal transaction is avoided.
+
+
+**Isolation**
+Ensure that the transaction will not be changed by any other concurrent transaction
+It means that each transaction in progress will not be interfered by any other transaction until it is completed.
+
+**Durability**
+Once a transaction is completed and committed, its changes are persisted permanently in the database. This property ensures that the information that is saved in the database is immutable until another update or deletion transaction affects it.
+
+
+
+### CAP
+
+**Consistency**
+Consistency means that the user should be able to see the same data no matter which node they connect to on the system. This data is the most recent data written to the system.
+
+**Availability**
+Availability is of importance when it is required that the client or user be able to access the data at all times, even if it is not consistent (it might not be the most recent). 
+
+**Partition Tolerance**
+Meaning if a node fails to communicate, then one of the replicas of the node should be able to retrieve the data required by the user.
+
+Partition is mandatory in every system
+
+
+**Examples AP**
+* Cassandra
+* DynamoDB
+* Cosmos DB
+
+**Examples CP**
+* MongoDB
+* Redis
+* HBase

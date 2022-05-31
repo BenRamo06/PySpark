@@ -13,9 +13,10 @@ gcloud dataproc clusters create my-workflow \
 gcloud dataproc jobs submit pyspark \
 --cluster=my-workflow \
 --region=us-central1 \
+gs://misarchivos/Jobs/logs.py
+
+--jars gs://misarchivos/spark-lib/spark-2.4-bigquery-0.24.2-preview.jar \
 --driver-log-levels \
-gs://qwiklabs-gcp-00-b3d2d119d891/files/example_hive.py
 
-
-
-gcloud dataproc clusters delete ${CLUSTERNAME}
+gcloud dataproc clusters delete my-workflow \
+--region us-central1
