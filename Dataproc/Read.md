@@ -54,7 +54,7 @@ What is a cluster
 	* EditLogs: It contains all the recent modifications made to the file system with respect to the most recent FsImage.
 - Receives a Heartbeat and a block report from all the DataNodes in the cluster to ensure that the DataNodes are live.
 - Responsible to take care of the replication factor of all the blocks
-- In case of the DataNode failure, the NameNode chooses new DataNodes for new replicas,
+- In case of the DataNode failure, the NameNode chooses new DataNodes for new replicas
 
 
 #### **Data nodes (Slaves)**

@@ -306,3 +306,48 @@ Collection of elements partitioned across the nodes of the cluster that can be o
 * **_.lead(col, offset):_** *returns the value that is `offset` rows after the current row, and `null` if there is less than `offset` rows after the current row.*
 
 
+
+### Streaming Window
+
+#### Tumbling Window
+
+The tumbling windows can be represented as a group of equally partitioned, adjacent time periods without having any intersecting intervals. The inputted data may be subject to an individual window.
+
+**_window(field, time_to_finish_windows) _**
+
+When observed on a timeline, the windows can be viewed as a sequence followed by each other in a static manner as in the following image.
+
+<p align="center">
+  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/window_tumbling.png">
+</p>
+
+Example: if we have a window size of 10 seconds, all the incoming events during the 10-second interval will fall into that window. We can define a tumbling window with a date-time field and a specific gap. Spark will divide the input stream into fixed-size segments after each interval.
+
+
+#### Sliding Window
+A sliding window is similar to a tumbling window, but it is overlapping. Therefore, we need to provide a sliding offset and the interval for the definition of a sliding window. For example, if we have a window size of 10 minutes with a sliding offset of 5 minutes, windows will slide every 5 minutes to create a new window of 10 minutes, as shown in the figure.
+
+**_window(field, time_to_finish_windows, time_to_create_sliding) _**
+
+
+
+
+<p align="center">
+  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/window_sliding.png">
+</p>
+
+Example: The following snippet calculates the 10 minutes visitor count and emits the results every 5 minutes. We have created a window on the visitDate for every 10 minutes and a sliding interval of 5 minutes. 
+
+
+#### Session Window
+Session windows have different semantics than tumbling and sliding windows because they look for elements that have occurred continuously. They can be of a dynamic size and depend on the incoming data. 
+
+Session window boundaries are inactivity periods when there is no incoming data. They start when an input has been received and continue as long as we keep receiving data within the time interval equivalent to the window size. For example, if we have a session window of 5 seconds, the window is started as soon as we receive an input element. Afterward, all the events received within 5 seconds will belong to the window, which closes if we don’t receive any data for 5 seconds.
+
+
+<p align="center">
+  <img src="https://github.com/BenRamo06/PySpark/blob/master/images/window_session.png">
+</p>
+
+
+Example: Session windows are essential if we want to know who has been visiting the hospital at a certain point or what part of the year most of the patients were frequently visiting (within 30 days). 
