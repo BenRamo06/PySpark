@@ -27,8 +27,12 @@ data = spark.read \
             .option("inferSchema", "true") \
             .option("header", "true") \
             .option("schema", schema_data) \
+            .option("mode", "PERMISSIVE") \  
             .load("inputs/data_movies")
-
+# Mode:
+  # Permissive: Ignore columns not defined in the schema.
+  # DROPMALFROMED: Ignore rows don't fit in the schema.
+  # FAILFAST: Fail if one row doesn't fit with the schema.
 
 data.show()
 data.printSchema()
